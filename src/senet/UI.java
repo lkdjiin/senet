@@ -1,11 +1,26 @@
 package senet;
 
+import gameboard2d.GameBoard2D;
+import java.awt.Color;
+import java.io.*;
+
 public class UI extends javax.swing.JFrame {
 
     private Controller controller;
+    private GameBoard2D gb2d;
 
     public UI() {
         initComponents();
+        panelContainer.setBackground(new Color(201,193,146));
+        try {
+            gb2d = new GameBoard2D();
+            gb2d.setBoard(new File("images/board.jpg"), new File("images/board-cache.png"));
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+            System.exit(1);
+        }
+        panelBoard.add(gb2d);
+        gb2d.drawBoard();
     }
 
     public void setController(Controller controller) {
@@ -30,28 +45,34 @@ public class UI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btThrowSticks = new javax.swing.JButton();
+        panelContainer = new javax.swing.JPanel();
+        panelBoard = new javax.swing.JPanel();
         labelSticksResult = new javax.swing.JLabel();
+        btThrowSticks = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(1, 126, 155));
-        jPanel1.setPreferredSize(new java.awt.Dimension(682, 237));
+        panelContainer.setBackground(new java.awt.Color(201, 193, 146));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelBoard.setBackground(new java.awt.Color(1, 126, 155));
+        panelBoard.setPreferredSize(new java.awt.Dimension(682, 237));
+
+        javax.swing.GroupLayout panelBoardLayout = new javax.swing.GroupLayout(panelBoard);
+        panelBoard.setLayout(panelBoardLayout);
+        panelBoardLayout.setHorizontalGroup(
+            panelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 682, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        panelBoardLayout.setVerticalGroup(
+            panelBoardLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 237, Short.MAX_VALUE)
         );
+
+        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        labelSticksResult.setText("jLabel1");
 
         btThrowSticks.setText("Throw sticks");
         btThrowSticks.addActionListener(new java.awt.event.ActionListener() {
@@ -60,8 +81,29 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
-        labelSticksResult.setText("jLabel1");
+        javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
+        panelContainer.setLayout(panelContainerLayout);
+        panelContainerLayout.setHorizontalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(labelSticksResult)
+                    .addComponent(btThrowSticks))
+                .addContainerGap(36, Short.MAX_VALUE))
+        );
+        panelContainerLayout.setVerticalGroup(
+            panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelContainerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(labelSticksResult)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btThrowSticks)
+                .addContainerGap(145, Short.MAX_VALUE))
+        );
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -75,24 +117,11 @@ public class UI extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSticksResult)
-                    .addComponent(btThrowSticks))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(panelContainer, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(labelSticksResult)
-                .addGap(18, 18, 18)
-                .addComponent(btThrowSticks)
-                .addContainerGap(135, Short.MAX_VALUE))
+            .addComponent(panelContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -111,8 +140,9 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelSticksResult;
+    private javax.swing.JPanel panelBoard;
+    private javax.swing.JPanel panelContainer;
     // End of variables declaration//GEN-END:variables
 
 }
