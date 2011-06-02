@@ -1,0 +1,25 @@
+= Senet
+
+Senet is a board game from ancient Egypt.
+
+== Features
+
+== Documentation
+
+== Dependencies
+
+Java 1.6+
+
+=== Developper's dependencies
+
+GameBoard2D
+
+== Install
+
+== License
+GPL, see COPYING.
+
+== Questions and/or Comments
+
+Feel free to email {Xavier Nayrac}[mailto:xavier.nayrac@gmail.com]
+with any questions.
