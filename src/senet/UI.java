@@ -2,8 +2,14 @@ package senet;
 
 public class UI extends javax.swing.JFrame {
 
+    private Controller controller;
+
     public UI() {
         initComponents();
+    }
+
+    public void setController(Controller controller) {
+        this.controller = controller;
     }
 
     public void display() {
@@ -25,7 +31,8 @@ public class UI extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btThrowSticks = new javax.swing.JButton();
+        labelSticksResult = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -46,7 +53,15 @@ public class UI extends javax.swing.JFrame {
             .addGap(0, 237, Short.MAX_VALUE)
         );
 
-        jButton1.setText("Throw sticks");
+        btThrowSticks.setText("Throw sticks");
+        btThrowSticks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btThrowSticksActionPerformed(evt);
+            }
+        });
+
+        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        labelSticksResult.setText("jLabel1");
 
         jMenu1.setText("File");
         jMenuBar1.add(jMenu1);
@@ -64,7 +79,8 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(labelSticksResult)
+                    .addComponent(btThrowSticks))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -73,20 +89,30 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(175, Short.MAX_VALUE))
+                .addComponent(labelSticksResult)
+                .addGap(18, 18, 18)
+                .addComponent(btThrowSticks)
+                .addContainerGap(135, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btThrowSticksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThrowSticksActionPerformed
+        controller.sticksThrowed();
+    }//GEN-LAST:event_btThrowSticksActionPerformed
+
+    public void displaySticksResult(int result) {
+        labelSticksResult.setText("" + result);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btThrowSticks;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel labelSticksResult;
     // End of variables declaration//GEN-END:variables
 
 }

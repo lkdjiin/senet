@@ -7,9 +7,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class StickTest {
+public class SticksTest {
 
-    public StickTest() {
+    public SticksTest() {
     }
 
     @BeforeClass
@@ -29,10 +29,13 @@ public class StickTest {
     }
 
     @Test
-    public void testThrow() {
-        Stick s = new Stick();
-        int result = s.getResultOfThrow();
-        assertTrue(result == 0 || result == 1);
+    public void testThrowThem() {
+        Sticks sticks = new Sticks();
+        int result;
+        for(int i = 0; i < 50; i++) {
+            result = sticks.getResultOfThrow();
+            assertTrue(result >= 1 && result <= 5);
+        }
     }
 
 }
