@@ -11,22 +11,36 @@ public class Controller {
     private UI ui;
     private Game game;
     private Sticks sticks;
-    
+
+    /**
+     * Sole constructor.
+     */
     public Controller() {
         sticks = new Sticks();
     }
 
+    /**
+     * Set the User Interface, from where Controller gets messages and to
+     * where it sends messages.
+     * @param ui the main JFrame
+     */
     public void setUI(UI ui) {
         this.ui = ui;
     }
 
-    public void sticksThrowed() {
+    /**
+     * A player (through GUI or AI) want to throw the sticks.
+     */
+    public void throwTheSticks() {
         int result = sticks.getResultOfThrow();
         ui.displaySticksResult(result);
         game.setSticksThrowed(true);
         ui.enableThrowing(false);
     }
 
+    /**
+     * Initialize a game with two human players.
+     */
     public void newGameTwoPlayersClicked() {
         String player1 = ui.getPlayerName("First player's name", "Player1");
         if(player1 == null) return;
@@ -40,6 +54,10 @@ public class Controller {
         ui.enableThrowing(true);
     }
 
+    /**
+     * A human player clicked on a box of the board.
+     * @param id the clicked box
+     */
     public void boxClicked(int id) {
         if(! game.isSticksThrowed()) {
             System.out.println("Throw the sticks first !");

@@ -201,7 +201,7 @@ public class UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btThrowSticksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThrowSticksActionPerformed
-        controller.sticksThrowed();
+        controller.throwTheSticks();
     }//GEN-LAST:event_btThrowSticksActionPerformed
 
     private void menuFileNewGameTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameTwoPlayersActionPerformed
