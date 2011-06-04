@@ -69,12 +69,16 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" attributes="0">
+              <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="panelBoard" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="labelSticksResult" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="btThrowSticks" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="btThrowSticks" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="1">
+                          <Component id="labelTurn" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="labelSticksResult" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Component id="panelBoard" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="36" max="32767" attributes="0"/>
               </Group>
@@ -86,7 +90,10 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="panelBoard" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Component id="labelSticksResult" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="labelSticksResult" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="labelTurn" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btThrowSticks" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="145" max="32767" attributes="0"/>
@@ -133,6 +140,14 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btThrowSticksActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="labelTurn">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="DejaVu Sans" size="18" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Player&apos;s Turn"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

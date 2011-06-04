@@ -103,6 +103,7 @@ public class UI extends javax.swing.JFrame {
         panelBoard = new javax.swing.JPanel();
         labelSticksResult = new javax.swing.JLabel();
         btThrowSticks = new javax.swing.JButton();
+        labelTurn = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuFileNewGameTwoPlayers = new javax.swing.JMenuItem();
@@ -136,16 +137,22 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        labelTurn.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelTurn.setText("Player's Turn");
+
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);
         panelContainerLayout.setHorizontalGroup(
             panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelSticksResult)
-                    .addComponent(btThrowSticks))
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(btThrowSticks)
+                    .addGroup(panelContainerLayout.createSequentialGroup()
+                        .addComponent(labelTurn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelSticksResult))
+                    .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         panelContainerLayout.setVerticalGroup(
@@ -154,7 +161,9 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(labelSticksResult)
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSticksResult)
+                    .addComponent(labelTurn))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btThrowSticks)
                 .addContainerGap(145, Short.MAX_VALUE))
@@ -207,12 +216,17 @@ public class UI extends javax.swing.JFrame {
         return JOptionPane.showInputDialog(this, question, defaultAnswer);
     }
 
+    public void setTurn(String text) {
+        labelTurn.setText(text);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btThrowSticks;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelSticksResult;
+    private javax.swing.JLabel labelTurn;
     private javax.swing.JMenuItem menuFileNewGameTwoPlayers;
     private javax.swing.JPanel panelBoard;
     private javax.swing.JPanel panelContainer;

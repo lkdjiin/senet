@@ -8,6 +8,7 @@ public class Controller {
     private Sticks sticks;
     private String blackPlayer;
     private String whitePlayer;
+    private boolean blackTurn = true;
 
     public Controller() {
         sticks = new Sticks();
@@ -36,5 +37,16 @@ public class Controller {
             blackPlayer = player2;
             whitePlayer = player1;
         }
+
+        blackTurn = true;
+        ui.setTurn("Black's Turn (" + blackPlayer + ")");
+    }
+
+    public boolean isBlackTurn() {
+        return blackTurn;
+    }
+
+    public boolean isWhiteTurn() {
+        return ! blackTurn;
     }
 }
