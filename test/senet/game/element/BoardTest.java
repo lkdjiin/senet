@@ -1,5 +1,6 @@
 package senet.game.element;
 
+import senet.game.Move;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -34,18 +35,18 @@ public class BoardTest {
     @Test
     public void testSetInitialPosition() {
         board.setInitialPosition();
-        assertTrue(board.boxes[0] == Board.BOX_WHITE);
-        assertTrue(board.boxes[2] == Board.BOX_WHITE);
-        assertTrue(board.boxes[4] == Board.BOX_WHITE);
-        assertTrue(board.boxes[6] == Board.BOX_WHITE);
-        assertTrue(board.boxes[8] == Board.BOX_WHITE);
-        assertTrue(board.boxes[1] == Board.BOX_BLACK);
-        assertTrue(board.boxes[3] == Board.BOX_BLACK);
-        assertTrue(board.boxes[5] == Board.BOX_BLACK);
-        assertTrue(board.boxes[7] == Board.BOX_BLACK);
-        assertTrue(board.boxes[9] == Board.BOX_BLACK);
-        for(int i = 10; i < 30; i++) {
-            assertTrue(board.boxes[i] == Board.BOX_VOID);
+        assertTrue(board.getBoxContent(1) == Board.BOX_WHITE);
+        assertTrue(board.getBoxContent(3) == Board.BOX_WHITE);
+        assertTrue(board.getBoxContent(5) == Board.BOX_WHITE);
+        assertTrue(board.getBoxContent(7) == Board.BOX_WHITE);
+        assertTrue(board.getBoxContent(9) == Board.BOX_WHITE);
+        assertTrue(board.getBoxContent(2) == Board.BOX_BLACK);
+        assertTrue(board.getBoxContent(4) == Board.BOX_BLACK);
+        assertTrue(board.getBoxContent(6) == Board.BOX_BLACK);
+        assertTrue(board.getBoxContent(8) == Board.BOX_BLACK);
+        assertTrue(board.getBoxContent(10) == Board.BOX_BLACK);
+        for(int i = 11; i <= 30; i++) {
+            assertTrue(board.getBoxContent(i) == Board.BOX_VOID);
         }
     }
 
@@ -60,7 +61,7 @@ public class BoardTest {
     @Test
     public void testMoveFrom10To12() {
         board.setInitialPosition();
-        board.move(10, 12);
+        board.move(new Move(10, 12));
         assertTrue(board.getBoxContent(10) == Board.BOX_VOID);
         assertTrue(board.getBoxContent(12) == Board.BOX_BLACK);
     }

@@ -1,7 +1,7 @@
 package senet;
 
-import senet.game.element.Board;
-import senet.game.element.Sticks;
+import senet.game.Move;
+import senet.game.element.*;
 
 public class Controller {
 
@@ -75,7 +75,7 @@ public class Controller {
             }
         } else {
             if(board.getBoxContent(id) == Board.BOX_VOID) {
-                board.move(moveFrom, id);
+                board.move(new Move(moveFrom, id));
                 ui.displayBoard(board);
                 nextTurn();
             }
