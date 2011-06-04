@@ -2,6 +2,9 @@ package senet.game;
 
 import senet.game.element.*;
 
+/**
+ * Course of the game.
+ */
 public class Game {
 
     private Board board;
@@ -11,19 +14,13 @@ public class Game {
     private boolean blackTurn = true;
     private Integer moveFrom;
 
-    public Game() {
+    /**
+     * Create a new game with two human players.
+     * @param player1Name the name of the first human player
+     * @param player2Name the name of the second human player
+     */
+    public Game(String player1Name, String player2Name) {
         board = new Board();
-    }
-
-    public boolean isSticksThrowed() {
-        return sticksThrowed;
-    }
-
-    public void setSticksThrowed(boolean sticksThrowed) {
-        this.sticksThrowed = sticksThrowed;
-    }
-
-    public void newGame(String player1Name, String player2Name) {
         int random = (int) (Math.random() * 2);
         if(random == 0) {
             blackPlayer = player1Name;
@@ -36,6 +33,14 @@ public class Game {
         board.setInitialPosition();
         moveFrom = null;
         sticksThrowed = false;
+    }
+
+    public boolean isSticksThrowed() {
+        return sticksThrowed;
+    }
+
+    public void setSticksThrowed(boolean sticksThrowed) {
+        this.sticksThrowed = sticksThrowed;
     }
 
     public String getBlackPlayerName() {
@@ -87,8 +92,8 @@ public class Game {
 
     public String getTurnAsText() {
         if(isBlackTurn())
-            return "Black's Turn (" + blackPlayer + ")";
+            return "Blacks Turn (" + blackPlayer + ")";
         else
-            return "White's Turn (" + whitePlayer + ")";
+            return "Whites Turn (" + whitePlayer + ")";
     }
 }

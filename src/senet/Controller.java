@@ -13,7 +13,6 @@ public class Controller {
     private Sticks sticks;
     
     public Controller() {
-        game = new Game();
         sticks = new Sticks();
     }
 
@@ -34,13 +33,12 @@ public class Controller {
         String player2 = ui.getPlayerName("Second player's name", "Player2");
         if(player2 == null) return;
 
-        game.newGame(player1, player2);
+        game = new Game(player1, player2);
 
         ui.setTurn("Black's Turn (" + game.getBlackPlayerName() + ")");
         ui.displayBoard(game.getBoard());
         ui.enableThrowing(true);
     }
-
 
     public void boxClicked(int id) {
         if(! game.isSticksThrowed()) {
