@@ -4,6 +4,7 @@ import gameboard2d.GameBoard2D;
 import java.awt.*;
 import java.io.*;
 import javax.swing.JOptionPane;
+import senet.game.element.Board;
 import senet.utils.ColorUtils;
 
 public class UI extends javax.swing.JFrame {
@@ -64,17 +65,17 @@ public class UI extends javax.swing.JFrame {
         panelBoard.add(gb2d);
         gb2d.drawBoard();
 
-        gb2d.drawPiece(WHITE_PIECE, 1);
-        gb2d.drawPiece(WHITE_PIECE, 3);
-        gb2d.drawPiece(WHITE_PIECE, 5);
-        gb2d.drawPiece(WHITE_PIECE, 7);
-        gb2d.drawPiece(WHITE_PIECE, 9);
-
-        gb2d.drawPiece(BLACK_PIECE, 2);
-        gb2d.drawPiece(BLACK_PIECE, 4);
-        gb2d.drawPiece(BLACK_PIECE, 6);
-        gb2d.drawPiece(BLACK_PIECE, 8);
-        gb2d.drawPiece(BLACK_PIECE, 10);
+//        gb2d.drawPiece(WHITE_PIECE, 1);
+//        gb2d.drawPiece(WHITE_PIECE, 3);
+//        gb2d.drawPiece(WHITE_PIECE, 5);
+//        gb2d.drawPiece(WHITE_PIECE, 7);
+//        gb2d.drawPiece(WHITE_PIECE, 9);
+//
+//        gb2d.drawPiece(BLACK_PIECE, 2);
+//        gb2d.drawPiece(BLACK_PIECE, 4);
+//        gb2d.drawPiece(BLACK_PIECE, 6);
+//        gb2d.drawPiece(BLACK_PIECE, 8);
+//        gb2d.drawPiece(BLACK_PIECE, 10);
     }
 
     public void setController(Controller controller) {
@@ -218,6 +219,17 @@ public class UI extends javax.swing.JFrame {
 
     public void setTurn(String text) {
         labelTurn.setText(text);
+    }
+
+    public void displayBoard(Board board) {
+        gb2d.drawBoard();
+        for(int i = 1; i <= 30; i++) {
+            if(board.getBoxContent(i) == Board.BOX_BLACK) {
+                gb2d.drawPiece(BLACK_PIECE, i);
+            } else if(board.getBoxContent(i) == Board.BOX_WHITE) {
+                gb2d.drawPiece(WHITE_PIECE, i);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

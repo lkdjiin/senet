@@ -1,5 +1,6 @@
 package senet;
 
+import senet.game.element.Board;
 import senet.game.element.Sticks;
 
 public class Controller {
@@ -9,9 +10,11 @@ public class Controller {
     private String blackPlayer;
     private String whitePlayer;
     private boolean blackTurn = true;
+    private Board board;
 
     public Controller() {
         sticks = new Sticks();
+        board = new Board();
     }
 
     public void setUI(UI ui) {
@@ -40,6 +43,8 @@ public class Controller {
 
         blackTurn = true;
         ui.setTurn("Black's Turn (" + blackPlayer + ")");
+        board.setInitialPosition();
+        ui.displayBoard(board);
     }
 
     public boolean isBlackTurn() {
