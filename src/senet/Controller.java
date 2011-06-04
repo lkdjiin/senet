@@ -42,13 +42,23 @@ public class Controller {
      * Initialize a game with two human players.
      */
     public void newGameTwoPlayersClicked() {
+        if(!createGameInstance())
+            return;
+        informUIOfNewGame();
+    }
+
+    private boolean createGameInstance() {
         String player1 = ui.getPlayerName("First player's name", "Player1");
-        if(player1 == null) return;
+        if(player1 == null)
+            return false;
         String player2 = ui.getPlayerName("Second player's name", "Player2");
-        if(player2 == null) return;
-
+        if(player2 == null)
+            return false;
         game = new Game(player1, player2);
+        return true;
+    }
 
+    private void informUIOfNewGame() {
         ui.setTurn(game.getTurnAsText());
         ui.displayBoard(game.getBoard());
         ui.enableThrowing(true);
@@ -59,21 +69,33 @@ public class Controller {
      * @param id the clicked box
      */
     public void boxClicked(int id) {
-        if(! game.isSticksThrowed()) {
+        if(sticksAreNotThrowed()) {
             System.out.println("Throw the sticks first !");
             return;
         }
-        if(game.getMoveFrom() == null) {
-            if(game.isBoxSelectable(id)) {
-                ui.setBoxSelected(game.getBoard(), id);
-                game.setMoveFrom(id);
-            }
+        if(startingBoxIsNotSelected()) {
+            selectBox(id);
         } else {
             if(game.isBoxVoid(id)) {
                 game.moveTo(id);
                 ui.displayBoard(game.getBoard());
                 nextTurn();
             }
+        }
+    }
+
+    private boolean sticksAreNotThrowed() {
+        return ! game.isSticksThrowed();
+    }
+
+    private boolean startingBoxIsNotSelected() {
+        return game.getMoveFrom() == null;
+    }
+
+    private void selectBox(int id) {
+        if(game.isBoxSelectable(id)) {
+            ui.setBoxSelected(game.getBoard(), id);
+            game.setMoveFrom(id);
         }
     }
 
