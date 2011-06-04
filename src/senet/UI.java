@@ -3,6 +3,7 @@ package senet;
 import gameboard2d.GameBoard2D;
 import java.awt.*;
 import java.io.*;
+import javax.swing.JOptionPane;
 import senet.utils.ColorUtils;
 
 public class UI extends javax.swing.JFrame {
@@ -16,6 +17,8 @@ public class UI extends javax.swing.JFrame {
     public UI() {
         initComponents();
         panelContainer.setBackground(new Color(201,193,146));
+        labelSticksResult.setText(" ");
+        
         try {
             gb2d = new GameBoard2D();
             gb2d.setBoard(new File("images/board.jpg"), new File("images/board-cache.png"));
@@ -102,6 +105,7 @@ public class UI extends javax.swing.JFrame {
         btThrowSticks = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
+        menuFileNewGameTwoPlayers = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -157,6 +161,15 @@ public class UI extends javax.swing.JFrame {
         );
 
         jMenu1.setText("File");
+
+        menuFileNewGameTwoPlayers.setText("New Game Two Players...");
+        menuFileNewGameTwoPlayers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFileNewGameTwoPlayersActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuFileNewGameTwoPlayers);
+
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Edit");
@@ -182,8 +195,16 @@ public class UI extends javax.swing.JFrame {
         controller.sticksThrowed();
     }//GEN-LAST:event_btThrowSticksActionPerformed
 
+    private void menuFileNewGameTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameTwoPlayersActionPerformed
+        controller.newGameTwoPlayersClicked();
+    }//GEN-LAST:event_menuFileNewGameTwoPlayersActionPerformed
+
     public void displaySticksResult(int result) {
         labelSticksResult.setText("" + result);
+    }
+
+    public String getPlayerName(String question, String defaultAnswer) {
+        return JOptionPane.showInputDialog(this, question, defaultAnswer);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -192,6 +213,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JLabel labelSticksResult;
+    private javax.swing.JMenuItem menuFileNewGameTwoPlayers;
     private javax.swing.JPanel panelBoard;
     private javax.swing.JPanel panelContainer;
     // End of variables declaration//GEN-END:variables
