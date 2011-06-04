@@ -1,22 +1,20 @@
 package senet;
 
-import senet.game.Move;
+import senet.game.*;
 import senet.game.element.*;
 
+/**
+ * Bandmaster of the game.
+ */
 public class Controller {
 
     private UI ui;
+    private Game game;
     private Sticks sticks;
-    private String blackPlayer;
-    private String whitePlayer;
-    private boolean blackTurn = true;
-    private Board board;
-    private Integer moveFrom;
-    private boolean sticksThrowed;
-
+    
     public Controller() {
+        game = new Game();
         sticks = new Sticks();
-        board = new Board();
     }
 
     public void setUI(UI ui) {
@@ -26,7 +24,7 @@ public class Controller {
     public void sticksThrowed() {
         int result = sticks.getResultOfThrow();
         ui.displaySticksResult(result);
-        sticksThrowed = true;
+        game.setSticksThrowed(true);
         ui.enableThrowing(false);
     }
 
@@ -36,60 +34,36 @@ public class Controller {
         String player2 = ui.getPlayerName("Second player's name", "Player2");
         if(player2 == null) return;
 
-        int random = (int) (Math.random() * 2);
-        if(random == 0) {
-            blackPlayer = player1;
-            whitePlayer = player2;
-        } else {
-            blackPlayer = player2;
-            whitePlayer = player1;
-        }
+        game.newGame(player1, player2);
 
-        blackTurn = true;
-        ui.setTurn("Black's Turn (" + blackPlayer + ")");
-        board.setInitialPosition();
-        ui.displayBoard(board);
-        moveFrom = null;
-        sticksThrowed = false;
+        ui.setTurn("Black's Turn (" + game.getBlackPlayerName() + ")");
+        ui.displayBoard(game.getBoard());
         ui.enableThrowing(true);
     }
 
-    public boolean isBlackTurn() {
-        return blackTurn;
-    }
-
-    public boolean isWhiteTurn() {
-        return ! blackTurn;
-    }
 
     public void boxClicked(int id) {
-        if(! sticksThrowed) {
+        if(! game.isSticksThrowed()) {
             System.out.println("Throw the sticks first !");
             return;
         }
-        if(moveFrom == null) {
-            if( (isBlackTurn() && board.getBoxContent(id) == Board.BOX_BLACK)
-                    || (isWhiteTurn() && board.getBoxContent(id) == Board.BOX_WHITE) ) {
-                ui.setBoxSelected(board, id);
-                moveFrom = id;
+        if(game.getMoveFrom() == null) {
+            if(game.isBoxSelectable(id)) {
+                ui.setBoxSelected(game.getBoard(), id);
+                game.setMoveFrom(id);
             }
         } else {
-            if(board.getBoxContent(id) == Board.BOX_VOID) {
-                board.move(new Move(moveFrom, id));
-                ui.displayBoard(board);
+            if(game.isBoxVoid(id)) {
+                game.moveTo(id);
+                ui.displayBoard(game.getBoard());
                 nextTurn();
             }
         }
     }
 
     private void nextTurn() {
-        blackTurn = ! blackTurn;
-        if(isBlackTurn())
-            ui.setTurn("Black's Turn (" + blackPlayer + ")");
-        else
-            ui.setTurn("White's Turn (" + whitePlayer + ")");
-        moveFrom = null;
-        sticksThrowed = false;
+        game.nextTurn();
+        ui.setTurn(game.getTurnAsText());
         ui.enableThrowing(true);
     }
 }

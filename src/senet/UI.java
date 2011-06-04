@@ -7,6 +7,9 @@ import javax.swing.JOptionPane;
 import senet.game.element.Board;
 import senet.utils.ColorUtils;
 
+/**
+ * The main GUI. Keep all logic out of this file.
+ */
 public class UI extends javax.swing.JFrame {
 
     private static final String WHITE_PIECE = "white";

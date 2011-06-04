@@ -1,6 +1,8 @@
 package senet;
 
-
+/**
+ * The origin of the world !
+ */
 public class Main {
 
     public static void main(String[] args) {
