@@ -11,6 +11,7 @@ public class UI extends javax.swing.JFrame {
 
     private static final String WHITE_PIECE = "white";
     private static final String BLACK_PIECE = "black";
+    private static final String SELECTED_BOX = "selected box";
 
     private Controller controller;
     private GameBoard2D gb2d;
@@ -57,6 +58,7 @@ public class UI extends javax.swing.JFrame {
 
             gb2d.addPiece(WHITE_PIECE, new File("images/white.png"));
             gb2d.addPiece(BLACK_PIECE, new File("images/black.png"));
+            gb2d.addPiece(SELECTED_BOX, new File("images/selected-box.png"));
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -64,18 +66,6 @@ public class UI extends javax.swing.JFrame {
         }
         panelBoard.add(gb2d);
         gb2d.drawBoard();
-
-//        gb2d.drawPiece(WHITE_PIECE, 1);
-//        gb2d.drawPiece(WHITE_PIECE, 3);
-//        gb2d.drawPiece(WHITE_PIECE, 5);
-//        gb2d.drawPiece(WHITE_PIECE, 7);
-//        gb2d.drawPiece(WHITE_PIECE, 9);
-//
-//        gb2d.drawPiece(BLACK_PIECE, 2);
-//        gb2d.drawPiece(BLACK_PIECE, 4);
-//        gb2d.drawPiece(BLACK_PIECE, 6);
-//        gb2d.drawPiece(BLACK_PIECE, 8);
-//        gb2d.drawPiece(BLACK_PIECE, 10);
     }
 
     public void setController(Controller controller) {
