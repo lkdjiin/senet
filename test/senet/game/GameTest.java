@@ -46,18 +46,6 @@ public class GameTest {
     }
 
     @Test
-    public void testGetBlackPlayerName() {
-        String result = game.getBlackPlayerName();
-        assertTrue(result.equals("player1") || result.equals("player2"));
-    }
-
-    @Test
-    public void testGetWhitePlayerName() {
-        String result = game.getWhitePlayerName();
-        assertTrue(result.equals("player1") || result.equals("player2"));
-    }
-
-    @Test
     public void testGetBoard() {
         assertNotNull(game.getBoard());
     }

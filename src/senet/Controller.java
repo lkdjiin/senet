@@ -35,7 +35,7 @@ public class Controller {
 
         game = new Game(player1, player2);
 
-        ui.setTurn("Black's Turn (" + game.getBlackPlayerName() + ")");
+        ui.setTurn(game.getTurnAsText());
         ui.displayBoard(game.getBoard());
         ui.enableThrowing(true);
     }
