@@ -77,7 +77,19 @@ public class Controller {
             if(board.getBoxContent(id) == Board.BOX_VOID) {
                 board.move(moveFrom, id);
                 ui.displayBoard(board);
+                nextTurn();
             }
         }
+    }
+
+    private void nextTurn() {
+        blackTurn = ! blackTurn;
+        if(isBlackTurn())
+            ui.setTurn("Black's Turn (" + blackPlayer + ")");
+        else
+            ui.setTurn("White's Turn (" + whitePlayer + ")");
+        moveFrom = null;
+        sticksThrowed = false;
+        ui.enableThrowing(true);
     }
 }
