@@ -111,6 +111,9 @@
               <Dimension value="[682, 237]"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="panelBoardMouseClicked"/>
+          </Events>
 
           <Layout>
             <DimensionLayout dim="0">
@@ -136,6 +139,7 @@
         <Component class="javax.swing.JButton" name="btThrowSticks">
           <Properties>
             <Property name="text" type="java.lang.String" value="Throw sticks"/>
+            <Property name="enabled" type="boolean" value="false"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btThrowSticksActionPerformed"/>

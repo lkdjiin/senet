@@ -106,6 +106,11 @@ public class UI extends javax.swing.JFrame {
 
         panelBoard.setBackground(new java.awt.Color(1, 126, 155));
         panelBoard.setPreferredSize(new java.awt.Dimension(682, 237));
+        panelBoard.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                panelBoardMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBoardLayout = new javax.swing.GroupLayout(panelBoard);
         panelBoard.setLayout(panelBoardLayout);
@@ -122,6 +127,7 @@ public class UI extends javax.swing.JFrame {
         labelSticksResult.setText("jLabel1");
 
         btThrowSticks.setText("Throw sticks");
+        btThrowSticks.setEnabled(false);
         btThrowSticks.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btThrowSticksActionPerformed(evt);
@@ -199,6 +205,15 @@ public class UI extends javax.swing.JFrame {
         controller.newGameTwoPlayersClicked();
     }//GEN-LAST:event_menuFileNewGameTwoPlayersActionPerformed
 
+    private void panelBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelBoardMouseClicked
+        try {
+            int id = gb2d.getBoxId(evt.getPoint());
+            controller.boxClicked(id);
+        } catch (ArrayIndexOutOfBoundsException ex) {
+            
+        }
+    }//GEN-LAST:event_panelBoardMouseClicked
+
     public void displaySticksResult(int result) {
         labelSticksResult.setText("" + result);
     }
@@ -220,6 +235,15 @@ public class UI extends javax.swing.JFrame {
                 gb2d.drawPiece(WHITE_PIECE, i);
             }
         }
+    }
+
+    public void setBoxSelected(Board board, int id) {
+        displayBoard(board);
+        gb2d.drawPieceOnTop(SELECTED_BOX, id);
+    }
+
+    public void enableThrowing(boolean value) {
+        btThrowSticks.setEnabled(value);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

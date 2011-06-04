@@ -57,4 +57,11 @@ public class BoardTest {
         assertTrue(board.getBoxContent(11) == Board.BOX_VOID);
     }
 
+    @Test
+    public void testMoveFrom10To12() {
+        board.setInitialPosition();
+        board.move(10, 12);
+        assertTrue(board.getBoxContent(10) == Board.BOX_VOID);
+        assertTrue(board.getBoxContent(12) == Board.BOX_BLACK);
+    }
 }

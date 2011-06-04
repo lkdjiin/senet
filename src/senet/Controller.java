@@ -11,6 +11,8 @@ public class Controller {
     private String whitePlayer;
     private boolean blackTurn = true;
     private Board board;
+    private Integer moveFrom;
+    private boolean sticksThrowed;
 
     public Controller() {
         sticks = new Sticks();
@@ -24,6 +26,8 @@ public class Controller {
     public void sticksThrowed() {
         int result = sticks.getResultOfThrow();
         ui.displaySticksResult(result);
+        sticksThrowed = true;
+        ui.enableThrowing(false);
     }
 
     public void newGameTwoPlayersClicked() {
@@ -45,6 +49,9 @@ public class Controller {
         ui.setTurn("Black's Turn (" + blackPlayer + ")");
         board.setInitialPosition();
         ui.displayBoard(board);
+        moveFrom = null;
+        sticksThrowed = false;
+        ui.enableThrowing(true);
     }
 
     public boolean isBlackTurn() {
@@ -53,5 +60,24 @@ public class Controller {
 
     public boolean isWhiteTurn() {
         return ! blackTurn;
+    }
+
+    public void boxClicked(int id) {
+        if(! sticksThrowed) {
+            System.out.println("Throw the sticks first !");
+            return;
+        }
+        if(moveFrom == null) {
+            if( (isBlackTurn() && board.getBoxContent(id) == Board.BOX_BLACK)
+                    || (isWhiteTurn() && board.getBoxContent(id) == Board.BOX_WHITE) ) {
+                ui.setBoxSelected(board, id);
+                moveFrom = id;
+            }
+        } else {
+            if(board.getBoxContent(id) == Board.BOX_VOID) {
+                board.move(moveFrom, id);
+                ui.displayBoard(board);
+            }
+        }
     }
 }

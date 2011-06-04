@@ -26,6 +26,9 @@ public class Board {
         boxes[5] = BOX_BLACK;
         boxes[7] = BOX_BLACK;
         boxes[9] = BOX_BLACK;
+        for(int i = 10; i < 30; i++) {
+            boxes[i] = BOX_VOID;
+        }
     }
 
     /**
@@ -35,6 +38,11 @@ public class Board {
      */
     public int getBoxContent(int boxNumber) {
         return boxes[boxNumber-1];
+    }
+
+    public void move(int from, int to) {
+        boxes[to-1] = boxes[from-1];
+        boxes[from-1] = BOX_VOID;
     }
 
 }
