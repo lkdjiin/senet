@@ -1,10 +1,14 @@
 package senet;
 
 import gameboard2d.GameBoard2D;
-import java.awt.Color;
+import java.awt.*;
 import java.io.*;
+import senet.utils.ColorUtils;
 
 public class UI extends javax.swing.JFrame {
+
+    private static final String WHITE_PIECE = "white";
+    private static final String BLACK_PIECE = "black";
 
     private Controller controller;
     private GameBoard2D gb2d;
@@ -15,12 +19,59 @@ public class UI extends javax.swing.JFrame {
         try {
             gb2d = new GameBoard2D();
             gb2d.setBoard(new File("images/board.jpg"), new File("images/board-cache.png"));
+
+            gb2d.addBox(1, ColorUtils.gray(0), new Point(15,25));
+            gb2d.addBox(2, ColorUtils.gray(5), new Point(85,25));
+            gb2d.addBox(3, ColorUtils.gray(10), new Point(150,25));
+            gb2d.addBox(4, ColorUtils.gray(15), new Point(215,25));
+            gb2d.addBox(5, ColorUtils.gray(20), new Point(285,25));
+            gb2d.addBox(6, ColorUtils.gray(25), new Point(350,25));
+            gb2d.addBox(7, ColorUtils.gray(30), new Point(415,25));
+            gb2d.addBox(8, ColorUtils.gray(35), new Point(480,25));
+            gb2d.addBox(9, ColorUtils.gray(40), new Point(545,25));
+            gb2d.addBox(10, ColorUtils.gray(45), new Point(610,25));
+            gb2d.addBox(11, ColorUtils.gray(50), new Point(610,90));
+            gb2d.addBox(12, ColorUtils.gray(55), new Point(545,90));
+            gb2d.addBox(13, ColorUtils.gray(60), new Point(480,90));
+            gb2d.addBox(14, ColorUtils.gray(65), new Point(415,90));
+            gb2d.addBox(15, ColorUtils.gray(70), new Point(350,90));
+            gb2d.addBox(16, ColorUtils.gray(75), new Point(285,90));
+            gb2d.addBox(17, ColorUtils.gray(80), new Point(215,90));
+            gb2d.addBox(18, ColorUtils.gray(85), new Point(150,90));
+            gb2d.addBox(19, ColorUtils.gray(90), new Point(85,90));
+            gb2d.addBox(20, ColorUtils.gray(95), new Point(15, 90));
+            gb2d.addBox(21, ColorUtils.gray(100), new Point(15,155));
+            gb2d.addBox(22, ColorUtils.gray(105), new Point(85,155));
+            gb2d.addBox(23, ColorUtils.gray(110), new Point(150,155));
+            gb2d.addBox(24, ColorUtils.gray(115), new Point(215,155));
+            gb2d.addBox(25, ColorUtils.gray(120), new Point(285,155));
+            gb2d.addBox(26, ColorUtils.gray(125), new Point(350,155));
+            gb2d.addBox(27, ColorUtils.gray(130), new Point(415,155));
+            gb2d.addBox(28, ColorUtils.gray(135), new Point(480,155));
+            gb2d.addBox(29, ColorUtils.gray(140), new Point(545,155));
+            gb2d.addBox(30, ColorUtils.gray(145), new Point(610,155));
+
+            gb2d.addPiece(WHITE_PIECE, new File("images/white.png"));
+            gb2d.addPiece(BLACK_PIECE, new File("images/black.png"));
+            
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
             System.exit(1);
         }
         panelBoard.add(gb2d);
         gb2d.drawBoard();
+
+        gb2d.drawPiece(WHITE_PIECE, 1);
+        gb2d.drawPiece(WHITE_PIECE, 3);
+        gb2d.drawPiece(WHITE_PIECE, 5);
+        gb2d.drawPiece(WHITE_PIECE, 7);
+        gb2d.drawPiece(WHITE_PIECE, 9);
+
+        gb2d.drawPiece(BLACK_PIECE, 2);
+        gb2d.drawPiece(BLACK_PIECE, 4);
+        gb2d.drawPiece(BLACK_PIECE, 6);
+        gb2d.drawPiece(BLACK_PIECE, 8);
+        gb2d.drawPiece(BLACK_PIECE, 10);
     }
 
     public void setController(Controller controller) {
