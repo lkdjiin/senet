@@ -1,5 +1,6 @@
 package senet;
 
+import javax.swing.JOptionPane;
 import senet.game.*;
 import senet.game.element.*;
 
@@ -70,7 +71,8 @@ public class Controller {
      */
     public void boxClicked(int id) {
         if(sticksAreNotThrowed()) {
-            System.out.println("Throw the sticks first !");
+//            System.out.println("Throw the sticks first !");
+            JOptionPane.showMessageDialog(ui, "Throw the sticks first !");
             return;
         }
         if(startingBoxIsNotSelected()) {

@@ -19,6 +19,9 @@ public class UI extends javax.swing.JFrame {
     private Controller controller;
     private GameBoard2D gb2d;
 
+    /**
+     * Sole constructor.
+     */
     public UI() {
         initComponents();
         panelContainer.setBackground(new Color(201,193,146));
@@ -71,10 +74,17 @@ public class UI extends javax.swing.JFrame {
         gb2d.drawBoard();
     }
 
+    /**
+     * Set the controller, from where we get messages and to
+     * where we send messages.
+     */
     public void setController(Controller controller) {
         this.controller = controller;
     }
 
+    /**
+     * Run the event queue and display the UI.
+     */
     public void display() {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -200,14 +210,23 @@ public class UI extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Player clicks the button to throw sticks.
+     */
     private void btThrowSticksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btThrowSticksActionPerformed
         controller.throwTheSticks();
     }//GEN-LAST:event_btThrowSticksActionPerformed
 
+    /**
+     * Player wants a new game.
+     */
     private void menuFileNewGameTwoPlayersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileNewGameTwoPlayersActionPerformed
         controller.newGameTwoPlayersClicked();
     }//GEN-LAST:event_menuFileNewGameTwoPlayersActionPerformed
 
+    /**
+     * Player clicks into the board game.
+     */
     private void panelBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelBoardMouseClicked
         try {
             int id = gb2d.getBoxId(evt.getPoint());
@@ -217,18 +236,36 @@ public class UI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_panelBoardMouseClicked
 
+    /**
+     * Show the result of threw to the player(s).
+     * @param result the number to show
+     */
     public void displaySticksResult(int result) {
         labelSticksResult.setText("" + result);
     }
 
+    /**
+     * Ask player for a name through a dialog box.
+     * @param question the question displayed in the dialog box.
+     * @param defaultAnswer the default name
+     * @return a name or null if player canceled the dialog
+     */
     public String getPlayerName(String question, String defaultAnswer) {
         return JOptionPane.showInputDialog(this, question, defaultAnswer);
     }
 
+    /**
+     * Show what turn is it.
+     * @param text the text to show
+     */
     public void setTurn(String text) {
         labelTurn.setText(text);
     }
 
+    /**
+     * Display the board and its pieces.
+     * @param board the board object to show
+     */
     public void displayBoard(Board board) {
         gb2d.drawBoard();
         for(int i = 1; i <= 30; i++) {
@@ -240,11 +277,20 @@ public class UI extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Highligth a box to mark it as selected by the player.
+     * @param board the board object to show
+     * @param id the selected box id
+     */
     public void setBoxSelected(Board board, int id) {
         displayBoard(board);
         gb2d.drawPieceOnTop(SELECTED_BOX, id);
     }
 
+    /**
+     * Enabled or disabled the button for throwing sticks.
+     * @param value true enable the button, false disable it
+     */
     public void enableThrowing(boolean value) {
         btThrowSticks.setEnabled(value);
     }
