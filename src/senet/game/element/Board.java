@@ -80,8 +80,9 @@ public class Board {
      * @param move the move to do
      */
     public void move(Move move) {
+        Integer temp = boxes[move.getTo()-1];
         boxes[move.getTo()-1] = boxes[move.getFrom()-1];
-        boxes[move.getFrom()-1] = BOX_VOID;
+        boxes[move.getFrom()-1] = temp;
     }
 
 }

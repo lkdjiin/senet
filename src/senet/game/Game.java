@@ -98,6 +98,14 @@ public class Game {
         return false;
     }
 
+    public boolean isLegalToMoveTo(int id, int threw) {
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, getTurn());
+        for(Move e : list) {
+            if(e.equals(new Move(getMoveFrom(), id)))
+                return true;
+        }
+        return false;
+    }
     /**
      * Returns true if this box doesn't contain any piece.
      * @param id a box id (1 - 30)
@@ -109,6 +117,8 @@ public class Game {
     /**
      * Make a move from the previously setted starting box ({@link #setMoveFrom}) to
      * the ending box given as parameter.
+     * <p>
+     * The move is supposed to be a legal one, no checks are performed.
      * @param id the ending box of the move
      */
     public void moveTo(int id) {

@@ -78,7 +78,7 @@ public class Controller {
         if(startingBoxIsNotSelected()) {
             selectBox(id);
         } else {
-            if(game.isBoxVoid(id)) {
+            if(game.isLegalToMoveTo(id, threw)) {
                 game.moveTo(id);
                 ui.displayBoard(game.getBoard());
                 nextTurn();
