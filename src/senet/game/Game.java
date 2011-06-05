@@ -1,5 +1,6 @@
 package senet.game;
 
+import java.util.ArrayList;
 import senet.game.element.*;
 
 /**
@@ -7,12 +8,16 @@ import senet.game.element.*;
  */
 public class Game {
 
+    public static final boolean BLACKS_TURN = true;
+    public static final boolean WHITES_TURN = false;
+
     private Board board;
     private boolean sticksThrowed;
     private String blackPlayer;
     private String whitePlayer;
     private boolean blackTurn = true;
     private Integer moveFrom;
+    private Rules rules;
 
     /**
      * Create a new game with two human players.
@@ -21,6 +26,7 @@ public class Game {
      */
     public Game(String player1Name, String player2Name) {
         board = new Board();
+        rules = new Rules();
         int random = (int) (Math.random() * 2);
         if(random == 0) {
             blackPlayer = player1Name;
@@ -53,11 +59,11 @@ public class Game {
         return board;
     }
 
-    public boolean isBlackTurn() {
+    public boolean isBlacksTurn() {
         return blackTurn;
     }
 
-    public boolean isWhiteTurn() {
+    public boolean isWhitesTurn() {
         return ! blackTurn;
     }
 
@@ -83,9 +89,13 @@ public class Game {
      * a move by the current player.
      * @param id a box id (1 - 30)
      */
-    public boolean isBoxSelectable(int id) {
-        return (isBlackTurn() && board.getBoxContent(id) == Board.BOX_BLACK)
-                    || (isWhiteTurn() && board.getBoxContent(id) == Board.BOX_WHITE);
+    public boolean isBoxSelectable(int id, int threw) {
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, getTurn());
+        for(Move e : list) {
+            if(e.getFrom() == id)
+                return true;
+        }
+        return false;
     }
 
     /**
@@ -109,9 +119,13 @@ public class Game {
      * Returns a human readeable string telling what turn is it.
      */
     public String getTurnAsText() {
-        if(isBlackTurn())
+        if(isBlacksTurn())
             return "Blacks Turn (" + blackPlayer + ")";
         else
             return "Whites Turn (" + whitePlayer + ")";
+    }
+
+    public boolean getTurn() {
+        return blackTurn;
     }
 }

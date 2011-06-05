@@ -55,4 +55,18 @@ public class MoveTest {
     public void testToTooBig() {
         Move move = new Move(12,31);
     }
+
+    @Test
+    public void testEquals() {
+        Move m1 = new Move(10,12);
+        Move m2 = new Move(10,12);
+        assertTrue(m1.equals(m2));
+    }
+
+    @Test
+    public void testNotEquals() {
+        Move m1 = new Move(10,12);
+        Move m2 = new Move(10,13);
+        assertFalse(m1.equals(m2));
+    }
 }

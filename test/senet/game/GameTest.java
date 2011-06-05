@@ -52,12 +52,12 @@ public class GameTest {
 
     @Test
     public void testItIsBlackTurnAtBegining() {
-        assertTrue(game.isBlackTurn());
+        assertTrue(game.isBlacksTurn());
     }
 
     @Test
     public void testItIsNotWhiteTurnAtBegining() {
-        assertFalse(game.isWhiteTurn());
+        assertFalse(game.isWhitesTurn());
     }
 
     @Test
@@ -73,9 +73,9 @@ public class GameTest {
 
     @Test
     public void testIsBoxSelectable() {
-        assertTrue(game.isBoxSelectable(10));
-        assertFalse(game.isBoxSelectable(9));
-        assertFalse(game.isBoxSelectable(30));
+        assertTrue(game.isBoxSelectable(10, 2));
+        assertFalse(game.isBoxSelectable(9, 2));
+        assertFalse(game.isBoxSelectable(20, 2));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class GameTest {
     @Test
     public void testNextTurn() {
         game.nextTurn();
-        assertTrue(game.isWhiteTurn());
+        assertTrue(game.isWhitesTurn());
         assertNull(game.getMoveFrom());
         assertFalse(game.isSticksThrowed());
     }
@@ -103,6 +103,13 @@ public class GameTest {
     @Test
     public void testGetTurnAsText() {
         assertTrue(game.getTurnAsText().startsWith("Blacks Turn (player"));
+    }
+
+    @Test
+    public void testGetTurn() {
+        assertEquals(Game.BLACKS_TURN, game.getTurn());
+        game.nextTurn();
+        assertEquals(Game.WHITES_TURN, game.getTurn());
     }
 
 }

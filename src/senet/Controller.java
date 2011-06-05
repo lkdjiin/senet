@@ -12,6 +12,7 @@ public class Controller {
     private UI ui;
     private Game game;
     private Sticks sticks;
+    private int threw;
 
     /**
      * Sole constructor.
@@ -33,8 +34,8 @@ public class Controller {
      * A player (through GUI or AI) want to throw the sticks.
      */
     public void throwTheSticks() {
-        int result = sticks.getResultOfThrow();
-        ui.displaySticksResult(result);
+        threw = sticks.getResultOfThrow();
+        ui.displaySticksResult(threw);
         game.setSticksThrowed(true);
         ui.enableThrowing(false);
     }
@@ -71,7 +72,6 @@ public class Controller {
      */
     public void boxClicked(int id) {
         if(sticksAreNotThrowed()) {
-//            System.out.println("Throw the sticks first !");
             JOptionPane.showMessageDialog(ui, "Throw the sticks first !");
             return;
         }
@@ -95,7 +95,7 @@ public class Controller {
     }
 
     private void selectBox(int id) {
-        if(game.isBoxSelectable(id)) {
+        if(game.isBoxSelectable(id, threw)) {
             ui.setBoxSelected(game.getBoard(), id);
             game.setMoveFrom(id);
         }

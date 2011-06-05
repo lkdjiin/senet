@@ -33,4 +33,30 @@ public class Move {
         return to;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Move other = (Move) obj;
+        if (this.from != other.from) {
+            return false;
+        }
+        if (this.to != other.to) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.from;
+        hash = 37 * hash + this.to;
+        return hash;
+    }
+
 }
