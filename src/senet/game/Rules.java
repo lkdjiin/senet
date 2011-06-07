@@ -38,9 +38,9 @@ public class Rules {
 
     private void checkBox(int id) {
         if(isCandidateForBlack(id)) {
-            addThisBoxIfLegalBlackMove(id);
+            addThisBoxIfLegalMove(id, Board.BOX_BLACK);
         } else if(isCandidateForWhite(id)){
-            addThisBoxIfLegalWhiteMove(id);
+            addThisBoxIfLegalMove(id, Board.BOX_WHITE);
         }
     }
 
@@ -60,50 +60,62 @@ public class Rules {
         return ! turn;
     }
 
+    /**
+     * @todo refactor; should be a Board method
+     */
     private boolean isBlackPieceInBox(int id) {
         return board.getBoxContent(id) == Board.BOX_BLACK;
     }
 
+    /**
+     * @todo refactor; should be a Board method
+     */
     private boolean isWhitePieceInBox(int id) {
         return board.getBoxContent(id) == Board.BOX_WHITE;
     }
 
+    /**
+     * @todo refactor; should be a Board method
+     */
     private boolean isVoidBox(int id) {
         return board.getBoxContent(id) == Board.BOX_VOID;
     }
 
+    private void addThisBoxIfLegalMove(int id, int color) {
+        int endingBox = id + threw;
+        if(isVoidBox(endingBox)) {
+            legalMoves.add(new Move(id, endingBox));
+        } else if(isPieceInBox(endingBox, getOpponentColor(color))) {
+            if(! isThisPieceProtected(endingBox)) {
+                legalMoves.add(new Move(id, endingBox));
+            }
+        }
+    }
+
+    private int getOpponentColor(int color) {
+        return color == Board.BOX_BLACK ? Board.BOX_WHITE : Board.BOX_BLACK;
+    }
+
     /**
-     * @todo refactor, same as addThisBoxIfLegalWhiteMove
+     * @todo refactor; should be a Board method
      */
-    private void addThisBoxIfLegalBlackMove(int id) {
-        int endingBox = id + threw;
-        if(isVoidBox(endingBox)) {
-            legalMoves.add(new Move(id, endingBox));
-        } else if(isWhitePieceInBox(endingBox)) {
-            if(isWhitePieceInBox(endingBox-1) || isWhitePieceInBox(endingBox+1)) {
-                return;
-            }
-            legalMoves.add(new Move(id, endingBox));
-        }
-    }
-    
-    private void addThisBoxIfLegalWhiteMove(int id) {
-        int endingBox = id + threw;
-        if(isVoidBox(endingBox)) {
-            legalMoves.add(new Move(id, endingBox));
-        } else if(isBlackPieceInBox(endingBox)) {
-            if(isBlackPieceInBox(endingBox-1) || isBlackPieceInBox(endingBox+1)) {
-                return;
-            }
-            legalMoves.add(new Move(id, endingBox));
-        }
+    private boolean isPieceInBox(int id, int color) {
+        return board.getBoxContent(id) == color;
     }
 
-    private boolean isWhitePieceOrVoidInBox(int id) {
-        return board.getBoxContent(id) != Board.BOX_BLACK;
-    }
-
-    private boolean isBlackPieceOrVoidInBox(int id) {
-        return board.getBoxContent(id) != Board.BOX_WHITE;
+    /**
+     * A piece is considered protected if there is another piece of the same color
+     * next to it.
+     * @param id the box id to watch
+     * @return true if there is a piece in box +id+ and this piece is protected
+     */
+    private boolean isThisPieceProtected(int id) {
+        int color = board.getBoxContent(id);
+        int after = board.getBoxContent(id+1);
+        int before = board.getBoxContent(id-1);
+        if(color ==  after || color == before)
+            return true;
+        else
+            return false;
     }
 }
