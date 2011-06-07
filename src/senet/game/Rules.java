@@ -84,12 +84,34 @@ public class Rules {
     private void addThisBoxIfLegalMove(int id, int color) {
         int endingBox = id + threw;
         if(isVoidBox(endingBox)) {
+            if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
+                return;
             legalMoves.add(new Move(id, endingBox));
         } else if(isPieceInBox(endingBox, getOpponentColor(color))) {
             if(! isThisPieceProtected(endingBox)) {
                 legalMoves.add(new Move(id, endingBox));
             }
         }
+    }
+
+    /**
+     *
+     * @param startBox the id of the start of the move
+     * @param endBox the id of the end of the move
+     * @param opponentColor
+     * @return true if there is a group of three ennemies between +startBox+ and +endBox+
+     */
+    private boolean weCannotPassOverThreeOpponents(int startBox, int endBox, int opponentColor) {
+        if(endBox-startBox <= 3)
+            return false;
+        for(int i = startBox+2; i <= endBox-2; i++) {
+            if(board.getBoxContent(i) == opponentColor
+                    && board.getBoxContent(i-1) == opponentColor
+                    && board.getBoxContent(i+1) == opponentColor) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private int getOpponentColor(int color) {

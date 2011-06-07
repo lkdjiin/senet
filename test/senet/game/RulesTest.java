@@ -147,4 +147,18 @@ public class RulesTest {
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(6, 10)));
     }
+
+    @Test
+    public void testThisIsNotABlockingWall() {
+        board.setRow(1, "bww--bw---");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(2, list.size());
+        assertTrue(list.contains(new Move(1, 5)));
+        assertTrue(list.contains(new Move(6, 10)));
+    }
 }
