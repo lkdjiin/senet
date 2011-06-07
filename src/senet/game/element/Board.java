@@ -1,5 +1,6 @@
 package senet.game.element;
 
+import org.apache.commons.lang.StringUtils;
 import senet.game.Move;
 
 /**
@@ -28,7 +29,7 @@ public class Board {
      * ranged from 0 to 29, but, the public API should use a more human-readable
      * abstraction with boxes ranged from 1 to 30.
      */
-    private Integer[] boxes;
+    protected Integer[] boxes;
 
     /**
      * Sole constructor, it initialize all the boxes to hold no piece.
@@ -63,6 +64,47 @@ public class Board {
         }
     }
 
+    public void setRow(int rowId, String rowContent) {
+        if(rowId == 1) {
+            setFirstRow(rowContent);
+        } else if(rowId == 2) {
+            setSecondRow(rowContent);
+        } else {
+            setThirdRow(rowContent);
+        }
+    }
+
+    private void setFirstRow(String rowContent) {
+        for(int i = 0; i < 10; i++) {
+            setBoxFromChar(i, rowContent.charAt(i));
+        }
+    }
+
+    private void setSecondRow(String rowContent) {
+        String reversed = StringUtils.reverse(rowContent);
+        for(int i = 10; i < 20; i++) {
+            setBoxFromChar(i, reversed.charAt(i-10));
+        }
+    }
+
+    private void setThirdRow(String rowContent) {
+        for(int i = 20; i < 30; i++) {
+            setBoxFromChar(i, rowContent.charAt(i-20));
+        }
+    }
+
+    private void setBoxFromChar(int id, char c) {
+        if(c == '-') {
+            boxes[id] = BOX_VOID;
+        } else if(c == 'b') {
+            boxes[id] = BOX_BLACK;
+        } else if(c == 'w') {
+            boxes[id] = BOX_WHITE;
+        }
+    }
+
+    
+
     /**
      * Returns the piece in this box.
      * @param boxNumber the number of the box, from 1 to 30 (1-based !)
@@ -83,6 +125,47 @@ public class Board {
         Integer temp = boxes[move.getTo()-1];
         boxes[move.getTo()-1] = boxes[move.getFrom()-1];
         boxes[move.getFrom()-1] = temp;
+    }
+
+    @Override
+    public String toString() {
+        // @todo refactoring
+        String ret = "";
+        for(int i = 0; i < 10; i++) {
+            if(boxes[i] == Board.BOX_VOID) {
+                ret += "-";
+            } else if(boxes[i] == Board.BOX_BLACK) {
+                ret += "b";
+            } else if(boxes[i] == Board.BOX_WHITE) {
+                ret += "w";
+            }
+        }
+        ret += "\n";
+
+        String temp = "";
+        for(int i = 10; i < 20; i++) {
+            if(boxes[i] == Board.BOX_VOID) {
+                temp += "-";
+            } else if(boxes[i] == Board.BOX_BLACK) {
+                temp += "b";
+            } else if(boxes[i] == Board.BOX_WHITE) {
+                temp += "w";
+            }
+        }
+        temp = StringUtils.reverse(temp);
+        ret += temp;
+        ret += "\n";
+
+        for(int i = 20; i < 30; i++) {
+            if(boxes[i] == Board.BOX_VOID) {
+                ret += "-";
+            } else if(boxes[i] == Board.BOX_BLACK) {
+                ret += "b";
+            } else if(boxes[i] == Board.BOX_WHITE) {
+                ret += "w";
+            }
+        }
+        return ret;
     }
 
 }

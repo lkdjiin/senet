@@ -38,9 +38,9 @@ public class Rules {
 
     private void checkBox(int id) {
         if(isCandidateForBlack(id)) {
-            addThisBoxIfLegalMove(id);
-        } else {
-
+            addThisBoxIfLegalBlackMove(id);
+        } else if(isCandidateForWhite(id)){
+            addThisBoxIfLegalWhiteMove(id);
         }
     }
 
@@ -48,22 +48,62 @@ public class Rules {
         return isBlacksTurn() && isBlackPieceInBox(id);
     }
 
+    private boolean isCandidateForWhite(int id) {
+        return isWhitesTurn() && isWhitePieceInBox(id);
+    }
+
     private boolean isBlacksTurn() {
         return turn;
+    }
+
+    private boolean isWhitesTurn() {
+        return ! turn;
     }
 
     private boolean isBlackPieceInBox(int id) {
         return board.getBoxContent(id) == Board.BOX_BLACK;
     }
 
+    private boolean isWhitePieceInBox(int id) {
+        return board.getBoxContent(id) == Board.BOX_WHITE;
+    }
+
+    private boolean isVoidBox(int id) {
+        return board.getBoxContent(id) == Board.BOX_VOID;
+    }
+
+    /**
+     * @todo refactor, same as addThisBoxIfLegalWhiteMove
+     */
+    private void addThisBoxIfLegalBlackMove(int id) {
+        int endingBox = id + threw;
+        if(isVoidBox(endingBox)) {
+            legalMoves.add(new Move(id, endingBox));
+        } else if(isWhitePieceInBox(endingBox)) {
+            if(isWhitePieceInBox(endingBox-1) || isWhitePieceInBox(endingBox+1)) {
+                return;
+            }
+            legalMoves.add(new Move(id, endingBox));
+        }
+    }
+    
+    private void addThisBoxIfLegalWhiteMove(int id) {
+        int endingBox = id + threw;
+        if(isVoidBox(endingBox)) {
+            legalMoves.add(new Move(id, endingBox));
+        } else if(isBlackPieceInBox(endingBox)) {
+            if(isBlackPieceInBox(endingBox-1) || isBlackPieceInBox(endingBox+1)) {
+                return;
+            }
+            legalMoves.add(new Move(id, endingBox));
+        }
+    }
+
     private boolean isWhitePieceOrVoidInBox(int id) {
         return board.getBoxContent(id) != Board.BOX_BLACK;
     }
 
-    private void addThisBoxIfLegalMove(int id) {
-        int endingBox = id + threw;
-        if(isWhitePieceOrVoidInBox(endingBox)) {
-            legalMoves.add(new Move(id, endingBox));
-        }
+    private boolean isBlackPieceOrVoidInBox(int id) {
+        return board.getBoxContent(id) != Board.BOX_WHITE;
     }
 }

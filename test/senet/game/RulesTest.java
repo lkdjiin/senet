@@ -33,7 +33,7 @@ public class RulesTest {
     public void setUp() {
         rules = new Rules();
         board = new Board();
-        board.setInitialPosition();
+        
         turn = BLACKS_TURN;
     }
 
@@ -43,6 +43,7 @@ public class RulesTest {
 
     @Test
     public void testGetAllLegalMovesAtStartingPositionWithAThrowOfOne() {
+        board.setInitialPosition();
         int threw = 1;
         
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, turn);
@@ -57,6 +58,7 @@ public class RulesTest {
 
     @Test
     public void testGetAllLegalMovesAtStartingPositionWithAThrowOfTwo() {
+        board.setInitialPosition();
         int threw = 2;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, turn);
@@ -67,6 +69,7 @@ public class RulesTest {
 
     @Test
     public void testGetAllLegalMovesAtStartingPositionWithAThrowOfThree() {
+        board.setInitialPosition();
         int threw = 3;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, turn);
@@ -81,6 +84,7 @@ public class RulesTest {
 
     @Test
     public void testGetAllLegalMovesAtStartingPositionWithAThrowOfFour() {
+        board.setInitialPosition();
         int threw = 4;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, turn);
@@ -92,6 +96,7 @@ public class RulesTest {
 
     @Test
     public void testGetAllLegalMovesAtStartingPositionWithAThrowOfFive() {
+        board.setInitialPosition();
         int threw = 5;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, turn);
@@ -102,5 +107,44 @@ public class RulesTest {
         assertTrue(list.contains(new Move(6, 11)));
         assertTrue(list.contains(new Move(4, 9)));
         assertTrue(list.contains(new Move(2, 7)));
+    }
+
+    @Test
+    public void test2BlackPiecesTogetherAreProtected() {
+        board.setRow(1, "b-ww-bw---");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(6, 8)));
+    }
+
+    @Test
+    public void test2WhitePiecesTogetherAreProtected() {
+        board.setRow(1, "w-bb-wb---");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(6, 8)));
+    }
+
+    @Test
+    public void test3BlackPiecesAreBlockingWall() {
+        board.setRow(1, "bwww-bw---");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(6, 10)));
     }
 }
