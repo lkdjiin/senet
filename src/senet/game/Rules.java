@@ -33,7 +33,13 @@ public class Rules {
      */
     public ArrayList<Move> getAllLegalMoves(Board board, int threw, boolean turn) {
         initArguments(board, threw, turn);
+        // Les coups en avant
         checkAllBoxes();
+        if(legalMoves.isEmpty()) {
+            // Les coups en arrière
+            this.threw = -threw;
+            checkAllBoxes();
+        }
         return legalMoves;
     }
 
@@ -76,6 +82,8 @@ public class Rules {
 
     private void addThisBoxIfLegalMove(int id, int color) {
         int endingBox = id + threw;
+        if(endingBox < 1)
+            return;
         if(board.isVoidBox(endingBox)) {
             if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
                 return;
@@ -93,11 +101,33 @@ public class Rules {
      * @param endBox the id of the end of the move
      * @param opponentColor
      * @return true if there is a group of three ennemies between +startBox+ and +endBox+
+     * @todo Board devrait contenir une méthode pour savoir si il y a un groupe de 3 d'une certaine couleur entre 2 cases
      */
     private boolean weCannotPassOverThreeOpponents(int startBox, int endBox, int opponentColor) {
+        if(endBox > startBox)
+            return weCannotPassOverThreeOpponentsForeward(startBox, endBox, opponentColor);
+        else
+            return weCannotPassOverThreeOpponentsBackward(startBox, endBox, opponentColor);
+        
+    }
+
+    private boolean weCannotPassOverThreeOpponentsForeward(int startBox, int endBox, int opponentColor) {
         if(endBox-startBox <= 3)
             return false;
         for(int i = startBox+2; i <= endBox-2; i++) {
+            if(board.getBoxContent(i) == opponentColor
+                    && board.getBoxContent(i-1) == opponentColor
+                    && board.getBoxContent(i+1) == opponentColor) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean weCannotPassOverThreeOpponentsBackward(int startBox, int endBox, int opponentColor) {
+        if(startBox-endBox <= 3)
+            return false;
+        for(int i = startBox-2; i >= endBox+2; i--) {
             if(board.getBoxContent(i) == opponentColor
                     && board.getBoxContent(i-1) == opponentColor
                     && board.getBoxContent(i+1) == opponentColor) {

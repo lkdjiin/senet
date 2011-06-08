@@ -59,4 +59,9 @@ public class Move {
         return hash;
     }
 
+    @Override
+    public String toString() {
+        return "Move: from " + from + " to " + to;
+    }
+
 }

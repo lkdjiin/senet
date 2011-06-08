@@ -123,6 +123,19 @@ public class RulesTest {
     }
 
     @Test
+    public void test2BlackPiecesTogetherAreProtectedBackward() {
+        board.setRow(1, "wwbww-bww-");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(7, 6)));
+    }
+
+    @Test
     public void test2WhitePiecesTogetherAreProtected() {
         board.setRow(1, "w-bb-wb---");
         board.setRow(2, "----------");
@@ -136,13 +149,65 @@ public class RulesTest {
     }
 
     @Test
-    public void test3BlackPiecesAreBlockingWall() {
+    public void test2WhitePiecesTogetherAreProtectedBackward() {
+        board.setRow(1, "bbwbb-wbb-");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(7, 6)));
+    }
+
+    @Test
+    public void test3PiecesAreBlockingWall() {
         board.setRow(1, "bwww-bw---");
         board.setRow(2, "----------");
         board.setRow(3, "----------");
         int threw = 4;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(6, 10)));
+    }
+
+    @Test
+    public void test3PiecesAreBlockingWall2() {
+        board.setRow(1, "bwww--bw--");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 5;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(7, 12)));
+    }
+
+    @Test
+    public void test3PiecesAreBlockingWallBackward() {
+        board.setRow(1, "-www-b---w");
+        board.setRow(2, "--------ww");
+        board.setRow(3, "----------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(0, list.size());
+        
+    }
+
+    @Test
+    public void test3WhitePiecesAreBlockingWall() {
+        board.setRow(1, "wbbb-wb---");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
 
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(6, 10)));
@@ -160,6 +225,19 @@ public class RulesTest {
         assertEquals(2, list.size());
         assertTrue(list.contains(new Move(1, 5)));
         assertTrue(list.contains(new Move(6, 10)));
+    }
+
+    @Test
+    public void testThisIsNotABlockingWall2() {
+        board.setRow(1, "bww-w-----");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 5;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(1, 6)));
     }
 
     @Test
@@ -196,5 +274,16 @@ public class RulesTest {
 
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(7, 5)));
+    }
+
+    @Test
+    public void testCannotPlayOutOfTheBeginingOfTheBoard() {
+        board.setRow(1, "-b-ww-----");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 2;
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(0, list.size());
     }
 }
