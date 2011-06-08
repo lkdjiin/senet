@@ -171,4 +171,30 @@ public class RulesTest {
         assertFalse(rules.isPlayAgain(2));
         assertFalse(rules.isPlayAgain(3));
     }
+
+    @Test
+    public void testShouldPlayBackward() {
+        board.setRow(1, "------b-ww");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(7, 5)));
+    }
+
+    @Test
+    public void testShouldPlayBackward2() {
+        board.setRow(1, "----w-b-ww");
+        board.setRow(2, "----------");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(7, 5)));
+    }
 }
