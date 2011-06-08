@@ -132,11 +132,11 @@ public class Board {
         // @todo refactoring
         String ret = "";
         for(int i = 0; i < 10; i++) {
-            if(boxes[i] == Board.BOX_VOID) {
+            if(boxes[i] == BOX_VOID) {
                 ret += "-";
-            } else if(boxes[i] == Board.BOX_BLACK) {
+            } else if(boxes[i] == BOX_BLACK) {
                 ret += "b";
-            } else if(boxes[i] == Board.BOX_WHITE) {
+            } else if(boxes[i] == BOX_WHITE) {
                 ret += "w";
             }
         }
@@ -144,11 +144,11 @@ public class Board {
 
         String temp = "";
         for(int i = 10; i < 20; i++) {
-            if(boxes[i] == Board.BOX_VOID) {
+            if(boxes[i] == BOX_VOID) {
                 temp += "-";
-            } else if(boxes[i] == Board.BOX_BLACK) {
+            } else if(boxes[i] == BOX_BLACK) {
                 temp += "b";
-            } else if(boxes[i] == Board.BOX_WHITE) {
+            } else if(boxes[i] == BOX_WHITE) {
                 temp += "w";
             }
         }
@@ -157,15 +157,31 @@ public class Board {
         ret += "\n";
 
         for(int i = 20; i < 30; i++) {
-            if(boxes[i] == Board.BOX_VOID) {
+            if(boxes[i] == BOX_VOID) {
                 ret += "-";
-            } else if(boxes[i] == Board.BOX_BLACK) {
+            } else if(boxes[i] == BOX_BLACK) {
                 ret += "b";
-            } else if(boxes[i] == Board.BOX_WHITE) {
+            } else if(boxes[i] == BOX_WHITE) {
                 ret += "w";
             }
         }
         return ret;
+    }
+
+    public boolean isBlackPieceInBox(int id) {
+        return getBoxContent(id) == BOX_BLACK;
+    }
+
+    public boolean isWhitePieceInBox(int id) {
+        return getBoxContent(id) == BOX_WHITE;
+    }
+
+    public boolean isVoidBox(int id) {
+        return getBoxContent(id) == BOX_VOID;
+    }
+
+    public boolean isPieceInBox(int id, int color) {
+        return getBoxContent(id) == color;
     }
 
 }

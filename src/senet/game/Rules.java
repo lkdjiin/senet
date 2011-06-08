@@ -45,11 +45,11 @@ public class Rules {
     }
 
     private boolean isCandidateForBlack(int id) {
-        return isBlacksTurn() && isBlackPieceInBox(id);
+        return isBlacksTurn() && board.isBlackPieceInBox(id);
     }
 
     private boolean isCandidateForWhite(int id) {
-        return isWhitesTurn() && isWhitePieceInBox(id);
+        return isWhitesTurn() && board.isWhitePieceInBox(id);
     }
 
     private boolean isBlacksTurn() {
@@ -60,34 +60,13 @@ public class Rules {
         return ! turn;
     }
 
-    /**
-     * @todo refactor; should be a Board method
-     */
-    private boolean isBlackPieceInBox(int id) {
-        return board.getBoxContent(id) == Board.BOX_BLACK;
-    }
-
-    /**
-     * @todo refactor; should be a Board method
-     */
-    private boolean isWhitePieceInBox(int id) {
-        return board.getBoxContent(id) == Board.BOX_WHITE;
-    }
-
-    /**
-     * @todo refactor; should be a Board method
-     */
-    private boolean isVoidBox(int id) {
-        return board.getBoxContent(id) == Board.BOX_VOID;
-    }
-
     private void addThisBoxIfLegalMove(int id, int color) {
         int endingBox = id + threw;
-        if(isVoidBox(endingBox)) {
+        if(board.isVoidBox(endingBox)) {
             if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
                 return;
             legalMoves.add(new Move(id, endingBox));
-        } else if(isPieceInBox(endingBox, getOpponentColor(color))) {
+        } else if(board.isPieceInBox(endingBox, getOpponentColor(color))) {
             if(! isThisPieceProtected(endingBox)) {
                 legalMoves.add(new Move(id, endingBox));
             }
@@ -116,13 +95,6 @@ public class Rules {
 
     private int getOpponentColor(int color) {
         return color == Board.BOX_BLACK ? Board.BOX_WHITE : Board.BOX_BLACK;
-    }
-
-    /**
-     * @todo refactor; should be a Board method
-     */
-    private boolean isPieceInBox(int id, int color) {
-        return board.getBoxContent(id) == color;
     }
 
     /**

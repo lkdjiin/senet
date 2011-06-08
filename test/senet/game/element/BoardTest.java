@@ -123,4 +123,41 @@ public class BoardTest {
         board.boxes[29] = Board.BOX_BLACK;
         assertEquals("----------\n----------\nw--------b", board.toString());
     }
+
+    @Test
+    public void testIsBlackPieceInBox() {
+        board.setInitialPosition();
+        assertTrue(board.isBlackPieceInBox(2));
+        assertFalse(board.isBlackPieceInBox(1));
+        assertFalse(board.isBlackPieceInBox(23));
+    }
+
+    @Test
+    public void testIsWhitePieceInBox() {
+        board.setInitialPosition();
+        assertTrue(board.isWhitePieceInBox(3));
+        assertFalse(board.isWhitePieceInBox(4));
+        assertFalse(board.isWhitePieceInBox(23));
+    }
+
+    @Test
+    public void testIsVoidBox() {
+        board.setInitialPosition();
+        assertTrue(board.isVoidBox(23));
+        assertFalse(board.isVoidBox(4));
+        assertFalse(board.isVoidBox(5));
+    }
+
+    @Test
+    public void testIsPieceInBox() {
+        board.setInitialPosition();
+        assertTrue(board.isPieceInBox(1, Board.BOX_WHITE));
+        assertFalse(board.isPieceInBox(1, Board.BOX_BLACK));
+
+        assertFalse(board.isPieceInBox(2, Board.BOX_WHITE));
+        assertTrue(board.isPieceInBox(2, Board.BOX_BLACK));
+
+        assertFalse(board.isPieceInBox(23, Board.BOX_WHITE));
+        assertFalse(board.isPieceInBox(23, Board.BOX_BLACK));
+    }
 }
