@@ -81,7 +81,10 @@ public class Controller {
             if(game.isLegalToMoveTo(id, threw)) {
                 game.moveTo(id);
                 ui.displayBoard(game.getBoard());
-                nextTurn();
+                if(game.isPlayAgain(threw))
+                    sameTurn();
+                else
+                    nextTurn();
             }
         }
     }
@@ -104,6 +107,14 @@ public class Controller {
     private void nextTurn() {
         game.nextTurn();
         ui.setTurn(game.getTurnAsText());
+        ui.enableThrowing(true);
+    }
+
+    /**
+     * @todo refactor: same as nextTurn
+     */
+    private void sameTurn() {
+        game.sameTurn();
         ui.enableThrowing(true);
     }
 }

@@ -3,12 +3,26 @@ package senet.game;
 import java.util.ArrayList;
 import senet.game.element.Board;
 
+/**
+ * The set of basic rules.
+ */
 public class Rules {
 
     private Board board;
     private int threw;
     private boolean turn;
     private ArrayList<Move> legalMoves;
+
+    public boolean isPlayAgain(int threw) {
+        switch(threw) {
+            case 1:
+            case 4:
+            case 5:
+                return true;
+            default:
+                return false;
+        }
+    }
 
     /**
      *

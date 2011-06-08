@@ -161,4 +161,14 @@ public class RulesTest {
         assertTrue(list.contains(new Move(1, 5)));
         assertTrue(list.contains(new Move(6, 10)));
     }
+
+    @Test
+    public void testShouldPlayAgainOnSomeThrewResult() {
+        assertTrue(rules.isPlayAgain(1));
+        assertTrue(rules.isPlayAgain(4));
+        assertTrue(rules.isPlayAgain(5));
+
+        assertFalse(rules.isPlayAgain(2));
+        assertFalse(rules.isPlayAgain(3));
+    }
 }

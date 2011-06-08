@@ -47,6 +47,14 @@ public class Game {
         sticksThrowed = false;
     }
 
+    /**
+     * @todo refactor: same as nextTurn
+     */
+    public void sameTurn() {
+        moveFrom = null;
+        sticksThrowed = false;
+    }
+
     public boolean isSticksThrowed() {
         return sticksThrowed;
     }
@@ -137,5 +145,9 @@ public class Game {
 
     public boolean getTurn() {
         return blackTurn;
+    }
+
+    public boolean isPlayAgain(int threw) {
+        return rules.isPlayAgain(threw);
     }
 }
