@@ -91,6 +91,8 @@ public class Rules {
         if(board.isVoidBox(endingBox)) {
             if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
                 return;
+            if(weTrytPassOverTheHouseOfGood(id, endingBox))
+                return;
             legalMoves.add(new Move(id, endingBox));
         } else if(board.isPieceInBox(endingBox, getOpponentColor(color))) {
             if(! isThisPieceProtected(endingBox)) {
@@ -113,6 +115,10 @@ public class Rules {
         else
             return weCannotPassOverThreeOpponentsBackward(startBox, endBox, opponentColor);
         
+    }
+
+    private boolean weTrytPassOverTheHouseOfGood(int startBox, int endBox) {
+        return startBox < 26 && endBox > 26;
     }
 
     private boolean weCannotPassOverThreeOpponentsForeward(int startBox, int endBox, int opponentColor) {

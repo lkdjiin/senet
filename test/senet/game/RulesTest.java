@@ -306,4 +306,69 @@ public class RulesTest {
 
         assertEquals(false, rules.noLegalMoves(board, threw, Game.BLACKS_TURN));
     }
+
+    @Test
+    public void testYouCannotPassTheHouseOfGood() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-b--------");
+        int threw = 5;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(22, 17)));
+    }
+
+    @Test
+    public void testYouCannotPassTheHouseOfGood2() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "--b-------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(23, 19)));
+    }
+
+    @Test
+    public void testYouCannotPassTheHouseOfGood3() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "---b------");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(24, 20)));
+    }
+
+    @Test
+    public void testYouCannotPassTheHouseOfGood4() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "----b-----");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(25, 23)));
+    }
+
+    @Test
+    public void testWeLandTheHouseOfGoodByAnExactThrow() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "----b-----");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(25, 26)));
+    }
 }
