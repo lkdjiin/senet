@@ -136,7 +136,7 @@ public class UI extends javax.swing.JFrame {
             .addGap(0, 237, Short.MAX_VALUE)
         );
 
-        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
         labelSticksResult.setText("jLabel1");
 
         btThrowSticks.setText("Throw sticks");
@@ -147,7 +147,7 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
-        labelTurn.setFont(new java.awt.Font("DejaVu Sans", 0, 18)); // NOI18N
+        labelTurn.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         labelTurn.setText("Player's Turn");
 
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);

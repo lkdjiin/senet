@@ -114,6 +114,11 @@ public class Game {
         }
         return false;
     }
+
+    public boolean noLegalMove(int threw) {
+        return rules.noLegalMoves(board, threw, getTurn());
+    }
+
     /**
      * Returns true if this box doesn't contain any piece.
      * @param id a box id (1 - 30)

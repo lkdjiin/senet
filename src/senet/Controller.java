@@ -71,8 +71,16 @@ public class Controller {
      * @param id the clicked box
      */
     public void boxClicked(int id) {
+        if(null == game) {
+            return;
+        }
         if(sticksAreNotThrowed()) {
             JOptionPane.showMessageDialog(ui, "Throw the sticks first !");
+            return;
+        }
+        if(game.noLegalMove(threw)) {
+            JOptionPane.showMessageDialog(ui, "Forfeit ! No legal moves.");
+            sameTurn();
             return;
         }
         if(startingBoxIsNotSelected()) {
@@ -94,6 +102,9 @@ public class Controller {
     }
 
     private boolean startingBoxIsNotSelected() {
+        if(null == game) {
+            return false;
+        }
         return game.getMoveFrom() == null;
     }
 

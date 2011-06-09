@@ -286,4 +286,24 @@ public class RulesTest {
 
         assertEquals(0, list.size());
     }
+
+    @Test
+    public void testNoLegalMoves() {
+        board.setRow(1, "-b-ww-b-b-");
+        board.setRow(2, "--------ww");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        assertEquals(true, rules.noLegalMoves(board, threw, Game.BLACKS_TURN));
+    }
+
+    @Test
+    public void testLegalMoves() {
+        board.setRow(1, "-b-ww-b-b-");
+        board.setRow(2, "---b----ww");
+        board.setRow(3, "----------");
+        int threw = 2;
+
+        assertEquals(false, rules.noLegalMoves(board, threw, Game.BLACKS_TURN));
+    }
 }

@@ -23,6 +23,10 @@ public class Rules {
                 return false;
         }
     }
+    
+    public boolean noLegalMoves(Board board, int threw, boolean turn) {
+        return getAllLegalMoves(board, threw, Game.BLACKS_TURN).isEmpty();
+    }
 
     /**
      *
