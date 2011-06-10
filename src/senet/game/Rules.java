@@ -166,4 +166,34 @@ public class Rules {
         else
             return false;
     }
+
+    /**
+     * Checks if the destination lands to the water (house 27).
+     * @param destination the destination house
+     * @return true if the destination equals 27
+     */
+    public boolean isGoingToTheWater(int destination) {
+        if(destination == 27) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * Get to a resurrection house.
+     * @param board the board content
+     * @param move a move that lands to the water
+     * @return the move with the destination changed
+     */
+    public int getResurrectionHouse(Board board) {
+        int destination = 15;
+        for(int i = 15; i < 26; i++) {
+            if(board.isVoidBox(i)) {
+                break;
+            }
+            destination = i + 1;
+        }
+        return destination;
+    }
 }

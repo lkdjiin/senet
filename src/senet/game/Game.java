@@ -106,6 +106,12 @@ public class Game {
         return false;
     }
 
+    /**
+     * Check if it is legal to move to the house +id+.
+     * @param id The house we want to move to.
+     * @param threw the result of threw sticks
+     * @return true if this move is legal
+     */
     public boolean isLegalToMoveTo(int id, int threw) {
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, getTurn());
         for(Move e : list) {
@@ -154,5 +160,13 @@ public class Game {
 
     public boolean isPlayAgain(int threw) {
         return rules.isPlayAgain(threw);
+    }
+
+    public boolean isGoingToTheWater(int id) {
+        return rules.isGoingToTheWater(id);
+    }
+
+    public int getResurrectionHouse() {
+        return rules.getResurrectionHouse(board);
     }
 }

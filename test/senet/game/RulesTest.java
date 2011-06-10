@@ -371,4 +371,73 @@ public class RulesTest {
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(25, 26)));
     }
+
+    @Test
+    public void testGoToTheWater() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-----b----");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(26, 27)));
+    }
+
+    @Test
+    public void testIsGoingToTheWater() {
+        assertEquals(true, rules.isGoingToTheWater(27));
+        assertEquals(false, rules.isGoingToTheWater(26));
+    }
+
+    @Test
+    public void testResurrection() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-----b----");
+
+        int house = rules.getResurrectionHouse(board);
+        assertEquals(15, house);
+    }
+
+    @Test
+    public void testResurrection2() {
+        board.setRow(1, "----------");
+        board.setRow(2, "-----w----");
+        board.setRow(3, "-----b----");
+
+        int house = rules.getResurrectionHouse(board);
+        assertEquals(16, house);
+    }
+
+    @Test
+    public void testResurrection3() {
+        board.setRow(1, "----------");
+        board.setRow(2, "-----b----");
+        board.setRow(3, "-----b----");
+
+        int house = rules.getResurrectionHouse(board);
+        assertEquals(16, house);
+    }
+
+    @Test
+    public void testResurrection4() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----ww----");
+        board.setRow(3, "-----b----");
+
+        int house = rules.getResurrectionHouse(board);
+        assertEquals(17, house);
+    }
+
+    @Test
+    public void testResurrection5() {
+        board.setRow(1, "----------");
+        board.setRow(2, "wwwwww----");
+        board.setRow(3, "w----b----");
+
+        int house = rules.getResurrectionHouse(board);
+        assertEquals(22, house);
+    }
 }

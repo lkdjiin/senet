@@ -87,6 +87,9 @@ public class Controller {
             selectBox(id);
         } else {
             if(game.isLegalToMoveTo(id, threw)) {
+                if(game.isGoingToTheWater(id)) {
+                    id = game.getResurrectionHouse();
+                }
                 game.moveTo(id);
                 ui.displayBoard(game.getBoard());
                 if(game.isPlayAgain(threw))
