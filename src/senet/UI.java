@@ -108,6 +108,7 @@ public class UI extends javax.swing.JFrame {
         labelSticksResult = new javax.swing.JLabel();
         btThrowSticks = new javax.swing.JButton();
         labelTurn = new javax.swing.JLabel();
+        btMoveOut = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuFileNewGameTwoPlayers = new javax.swing.JMenuItem();
@@ -136,7 +137,7 @@ public class UI extends javax.swing.JFrame {
             .addGap(0, 237, Short.MAX_VALUE)
         );
 
-        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
+        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
         labelSticksResult.setText("jLabel1");
 
         btThrowSticks.setText("Throw sticks");
@@ -150,6 +151,14 @@ public class UI extends javax.swing.JFrame {
         labelTurn.setFont(new java.awt.Font("DejaVu Sans", 0, 18));
         labelTurn.setText("Player's Turn");
 
+        btMoveOut.setText("Move out");
+        btMoveOut.setEnabled(false);
+        btMoveOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btMoveOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);
         panelContainerLayout.setHorizontalGroup(
@@ -157,13 +166,17 @@ public class UI extends javax.swing.JFrame {
             .addGroup(panelContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(btThrowSticks)
+                    .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelContainerLayout.createSequentialGroup()
                         .addComponent(labelTurn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(labelSticksResult))
-                    .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                        .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelSticksResult)
+                            .addGroup(panelContainerLayout.createSequentialGroup()
+                                .addComponent(btThrowSticks)
+                                .addGap(18, 18, 18)
+                                .addComponent(btMoveOut)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         panelContainerLayout.setVerticalGroup(
             panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -172,10 +185,11 @@ public class UI extends javax.swing.JFrame {
                 .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelSticksResult)
-                    .addComponent(labelTurn))
+                    .addComponent(labelTurn)
+                    .addComponent(btMoveOut)
+                    .addComponent(btThrowSticks))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btThrowSticks)
+                .addComponent(labelSticksResult)
                 .addContainerGap(145, Short.MAX_VALUE))
         );
 
@@ -236,6 +250,10 @@ public class UI extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_panelBoardMouseClicked
 
+    private void btMoveOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMoveOutActionPerformed
+        controller.buttonMoveOutClicked();
+    }//GEN-LAST:event_btMoveOutActionPerformed
+
     /**
      * Show the result of threw to the player(s).
      * @param result the number to show
@@ -295,7 +313,16 @@ public class UI extends javax.swing.JFrame {
         btThrowSticks.setEnabled(value);
     }
 
+    public void mayMoveOut() {
+        btMoveOut.setEnabled(true);
+    }
+
+    public void cannotMoveOut() {
+        btMoveOut.setEnabled(false);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btMoveOut;
     private javax.swing.JButton btThrowSticks;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;

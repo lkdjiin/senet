@@ -73,6 +73,22 @@ public class BoardTest {
         assertTrue(board.getBoxContent(11) == Board.BOX_VOID);
     }
 
+    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    public void testGetBoxContentCrashFrom0() {
+        board.getBoxContent(0);
+    }
+
+    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    public void testGetBoxContentCrashFrom31() {
+        board.getBoxContent(31);
+    }
+
+    @Test
+    public void testGetBoxContentFrom30() {
+        board.setInitialPosition();
+        assertEquals(Board.BOX_VOID, board.getBoxContent(30));
+    }
+
     @Test
     public void testMoveFrom10To12() {
         board.setInitialPosition();

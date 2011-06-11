@@ -122,6 +122,10 @@ public class Board {
      * @param move the move to do
      */
     public void move(Move move) {
+        if(move.getTo() == 0) {
+            boxes[move.getFrom()-1] = BOX_VOID;
+            return;
+        }
         Integer temp = boxes[move.getTo()-1];
         boxes[move.getTo()-1] = boxes[move.getFrom()-1];
         boxes[move.getFrom()-1] = temp;

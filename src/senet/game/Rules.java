@@ -86,7 +86,13 @@ public class Rules {
 
     private void addThisBoxIfLegalMove(int id, int color) {
         int endingBox = id + threw;
-        if(endingBox < 1)
+
+        if(canMoveOut(id, threw)) {
+            legalMoves.add(new Move(id, 0));
+            return;
+        }
+
+        if(endingBox < 1 || endingBox > 30)
             return;
         if(board.isVoidBox(endingBox)) {
             if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
@@ -98,6 +104,20 @@ public class Rules {
             if(! isThisPieceProtected(endingBox)) {
                 legalMoves.add(new Move(id, endingBox));
             }
+        }
+    }
+
+    public boolean canMoveOut(int id, int threw) {
+        if(id == 30 && threw == 1) {
+            return true;
+        } else if(id == 29 && threw == 2) {
+            return true;
+        } else if(id == 28 && threw == 3) {
+            return true;
+        } else if(id == 26 && threw == 5) {
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -158,6 +178,9 @@ public class Rules {
      * @return true if there is a piece in box +id+ and this piece is protected
      */
     private boolean isThisPieceProtected(int id) {
+        if(id >= 26) {
+            return false;
+        }
         int color = board.getBoxContent(id);
         int after = board.getBoxContent(id+1);
         int before = board.getBoxContent(id-1);

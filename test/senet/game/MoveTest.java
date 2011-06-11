@@ -48,7 +48,12 @@ public class MoveTest {
 
     @Test(expected= IllegalArgumentException.class)
     public void testToTooLow() {
-        Move move = new Move(12,0);
+        Move move = new Move(12,-1);
+    }
+
+    @Test
+    public void testMoveOut() {
+        Move move = new Move(28, 0);
     }
 
     @Test(expected= IllegalArgumentException.class)

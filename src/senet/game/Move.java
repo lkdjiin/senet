@@ -10,10 +10,10 @@ public class Move {
     /**
      * Sole constructor.
      * @param from the starting box (1 - 30)
-     * @param to the ending box (1 - 30)
+     * @param to the ending box (0 - 30). A value of zero means "go out".
      */
     public Move(int from, int to) {
-        if(from < 1 || from > 30 || to < 1 || to > 30)
+        if(from < 1 || from > 30 || to < 0 || to > 30)
             throw new IllegalArgumentException();
         this.from = from;
         this.to = to;

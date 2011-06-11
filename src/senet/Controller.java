@@ -85,6 +85,9 @@ public class Controller {
         }
         if(startingBoxIsNotSelected()) {
             selectBox(id);
+            if(game.canMoveOut(id, threw)) {
+                ui.mayMoveOut();
+            }
         } else {
             if(game.isLegalToMoveTo(id, threw)) {
                 if(game.isGoingToTheWater(id)) {
@@ -98,6 +101,15 @@ public class Controller {
                     nextTurn();
             }
         }
+    }
+
+    public void buttonMoveOutClicked() {
+        game.moveOut();
+        ui.displayBoard(game.getBoard());
+        if(game.isPlayAgain(threw))
+            sameTurn();
+        else
+            nextTurn();
     }
 
     private boolean sticksAreNotThrowed() {
@@ -122,6 +134,7 @@ public class Controller {
         game.nextTurn();
         ui.setTurn(game.getTurnAsText());
         ui.enableThrowing(true);
+        ui.cannotMoveOut();
     }
 
     /**
@@ -130,5 +143,6 @@ public class Controller {
     private void sameTurn() {
         game.sameTurn();
         ui.enableThrowing(true);
+        ui.cannotMoveOut();
     }
 }

@@ -440,4 +440,84 @@ public class RulesTest {
         int house = rules.getResurrectionHouse(board);
         assertEquals(22, house);
     }
+
+    @Test
+    public void testExitFromHouse30Black() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "---------b");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(30, 0)));
+    }
+
+    @Test
+    public void testExitFromHouse30White() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "---------w");
+        int threw = 1;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(30, 0)));
+    }
+    
+    @Test
+    public void testExitFromHouse29Black() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "--------b-");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(29, 0)));
+    }
+
+    @Test
+    public void testExitFromHouse28Black() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-------b--");
+        int threw = 3;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(28, 0)));
+    }
+
+    @Test
+    public void testExitFromHouse26Black() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-----b----");
+        int threw = 5;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(26, 0)));
+    }
+
+    /***************** Bugs seen during development time ******************/
+    
+    @Test
+    public void testMove1() {
+        board.setRow(1, "---------b");
+        board.setRow(2, "---w------");
+        board.setRow(3, "w---ww-b-b");
+        int threw = 4;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
+   
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(26, 30)));
+    }
 }

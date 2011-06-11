@@ -144,6 +144,10 @@ public class Game {
         board.move(new Move(moveFrom, id));
     }
 
+    public void moveOut() {
+        board.move(new Move(moveFrom, 0));
+    }
+
     /**
      * Returns a human readeable string telling what turn is it.
      */
@@ -168,5 +172,9 @@ public class Game {
 
     public int getResurrectionHouse() {
         return rules.getResurrectionHouse(board);
+    }
+
+    public boolean canMoveOut(int id, int threw) {
+        return rules.canMoveOut(id, threw);
     }
 }
