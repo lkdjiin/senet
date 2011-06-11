@@ -131,6 +131,19 @@ public class Board {
         boxes[move.getFrom()-1] = temp;
     }
 
+    /**
+     * Make a move in the last 3 houses. If an ennemy piece is swapped
+     * it is resurrected.
+     * @param move the move to do
+     * @param resurrectionHouse the house where to resurrect
+     */
+    public void move(Move move, int resurrectionHouse) {
+        Integer temp = boxes[move.getTo()-1];
+        boxes[move.getTo()-1] = boxes[move.getFrom()-1];
+        boxes[resurrectionHouse-1] = temp;
+        boxes[move.getFrom()-1] = BOX_VOID;
+    }
+
     @Override
     public String toString() {
         // @todo refactoring

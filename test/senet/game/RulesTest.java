@@ -169,7 +169,7 @@ public class RulesTest {
         int threw = 2;
 
         ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
-        System.out.println(list.get(0));
+
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(24, 22)));
     }
@@ -534,5 +534,20 @@ public class RulesTest {
    
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(26, 30)));
+    }
+
+    @Test
+    public void testMove2() {
+        board.setRow(1, "----------");
+        board.setRow(2, "w-w-------");
+        board.setRow(3, "b--bbw-w-w");
+        int threw = 5;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+
+        assertEquals(3, list.size());
+        assertTrue(list.contains(new Move(25, 20)));
+        assertTrue(list.contains(new Move(24, 19)));
+        assertTrue(list.contains(new Move(21, 16)));
     }
 }

@@ -141,7 +141,12 @@ public class Game {
      * @param id the ending box of the move
      */
     public void moveTo(int id) {
-        board.move(new Move(moveFrom, id));
+        Move m = new Move(moveFrom, id);
+        if(id > 27 && moveFrom < 27) {
+            board.move(m, getResurrectionHouse());
+        } else {
+            board.move(m);
+        }
     }
 
     public void moveOut() {

@@ -94,10 +94,10 @@ public class Rules {
 
         if(endingBox < 1 || endingBox > 30)
             return;
+        if(weTrytPassOverTheHouseOfGood(id, endingBox))
+            return;
         if(board.isVoidBox(endingBox)) {
             if(weCannotPassOverThreeOpponents(id, endingBox, getOpponentColor(color)))
-                return;
-            if(weTrytPassOverTheHouseOfGood(id, endingBox))
                 return;
             legalMoves.add(new Move(id, endingBox));
         } else if(board.isPieceInBox(endingBox, getOpponentColor(color))) {
