@@ -160,6 +160,21 @@ public class RulesTest {
         assertEquals(1, list.size());
         assertTrue(list.contains(new Move(7, 6)));
     }
+    
+    @Test
+    public void testAPieceInHouse26IsAlwaysProtected() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "---b-w----");
+        int threw = 2;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.BLACKS_TURN);
+        System.out.println(list.get(0));
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(24, 22)));
+    }
+
+
 
     @Test
     public void test3PiecesAreBlockingWall() {

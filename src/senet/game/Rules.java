@@ -173,13 +173,17 @@ public class Rules {
 
     /**
      * A piece is considered protected if there is another piece of the same color
-     * next to it.
+     * next to it. There is two special cases: house 26 is alwas protected and
+     * houses 28, 29 and 30 are never protected.
      * @param id the box id to watch
      * @return true if there is a piece in box +id+ and this piece is protected
      */
     private boolean isThisPieceProtected(int id) {
-        if(id >= 26) {
+        if(id > 26) {
             return false;
+        }
+        if(id == 26) {
+            return true;
         }
         int color = board.getBoxContent(id);
         int after = board.getBoxContent(id+1);
