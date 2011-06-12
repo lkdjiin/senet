@@ -8,7 +8,7 @@ Senet is in early development stage. Two human players can play against each oth
 
 == Documentation
 
-See the RULES.rdoc file to know wich set of rules are used.
+See the {RULES.rdoc}[https://github.com/lkdjiin/senet/blob/master/RULES.rdoc] file to know wich set of rules are used.
 
 To start a new game : menu File>New game
 
@@ -24,6 +24,7 @@ Java 1.6+
 === Developper's dependencies
 
 {GameBoard2D}[https://github.com/lkdjiin/GameBoard2D]
+
 {apache common-langs 2.6}[http://commons.apache.org/lang/]
 
 == Install
