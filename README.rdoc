@@ -4,7 +4,18 @@ Senet is a board game from ancient Egypt.
 
 == Features
 
+Senet is in early development stage. Two human players can play against each other.
+
 == Documentation
+
+See the RULES.rdoc file to know wich set of rules are used.
+
+To start a new game : menu File>New game
+
+To move : throw the sticks with the button, then left click to select a piece, finally
+left click again to the destination house.
+
+To deselect a selected piece : right click.
 
 == Dependencies
 
@@ -12,9 +23,19 @@ Java 1.6+
 
 === Developper's dependencies
 
-GameBoard2D
+{GameBoard2D}[https://github.com/lkdjiin/GameBoard2D]
+{apache common-langs 2.6}[http://commons.apache.org/lang/]
 
 == Install
+
+Download the {GameBoard2D}[https://github.com/lkdjiin/GameBoard2D] library and compile it.
+
+Download the {apache common-langs 2.6}[http://commons.apache.org/lang/] library.
+
+Download the senet sources, make a reference to the GameBoard2D.jar and the commons-lang-2.6.jar and compile it.
+
+Go to the folder with the senet.jar file and launch it with:
+  java -jar senet.jar
 
 == License
 GPL, see COPYING.
