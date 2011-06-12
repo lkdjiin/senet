@@ -199,8 +199,10 @@ public class Rules {
      * @param destination the destination house
      * @return true if the destination equals 27
      */
-    public boolean isGoingToTheWater(int destination) {
+    public boolean isGoingToTheWater(int from, int destination) {
         if(destination == 27) {
+            return true;
+        }  else if (from > 27 && destination < 27) {
             return true;
         } else {
             return false;

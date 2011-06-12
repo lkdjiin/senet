@@ -2,6 +2,7 @@ package senet;
 
 import gameboard2d.GameBoard2D;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.io.*;
 import javax.swing.JOptionPane;
 import senet.game.element.Board;
@@ -244,7 +245,10 @@ public class UI extends javax.swing.JFrame {
     private void panelBoardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_panelBoardMouseClicked
         try {
             int id = gb2d.getBoxId(evt.getPoint());
-            controller.boxClicked(id);
+            if(evt.getButton() == MouseEvent.BUTTON1)
+                controller.boxClicked(id);
+            else if (evt.getButton() == MouseEvent.BUTTON3)
+                controller.deselect(id);
         } catch (ArrayIndexOutOfBoundsException ex) {
             
         }
@@ -311,6 +315,9 @@ public class UI extends javax.swing.JFrame {
      */
     public void enableThrowing(boolean value) {
         btThrowSticks.setEnabled(value);
+        if(value) {
+            labelSticksResult.setText(" ");
+        }
     }
 
     public void mayMoveOut() {

@@ -66,6 +66,16 @@ public class Controller {
         ui.enableThrowing(true);
     }
 
+    public void deselect(int id) {
+        if(startingBoxIsNotSelected()) {
+            return;
+        }
+        if(game.getMoveFrom() == id) {
+            game.setMoveFrom(null);
+            ui.displayBoard(game.getBoard());
+        }
+    }
+
     /**
      * A human player clicked on a box of the board.
      * @param id the clicked box

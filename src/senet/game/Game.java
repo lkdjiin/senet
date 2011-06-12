@@ -172,7 +172,7 @@ public class Game {
     }
 
     public boolean isGoingToTheWater(int id) {
-        return rules.isGoingToTheWater(id);
+        return rules.isGoingToTheWater(moveFrom, id);
     }
 
     public int getResurrectionHouse() {

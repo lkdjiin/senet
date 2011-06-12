@@ -402,8 +402,9 @@ public class RulesTest {
 
     @Test
     public void testIsGoingToTheWater() {
-        assertEquals(true, rules.isGoingToTheWater(27));
-        assertEquals(false, rules.isGoingToTheWater(26));
+        assertEquals(true, rules.isGoingToTheWater(26, 27));
+        assertEquals(false, rules.isGoingToTheWater(25, 26));
+        assertEquals(true, rules.isGoingToTheWater(29, 26));
     }
 
     @Test
@@ -549,5 +550,18 @@ public class RulesTest {
         assertTrue(list.contains(new Move(25, 20)));
         assertTrue(list.contains(new Move(24, 19)));
         assertTrue(list.contains(new Move(21, 16)));
+    }
+
+    @Test
+    public void testMove3() {
+        board.setRow(1, "----------");
+        board.setRow(2, "----------");
+        board.setRow(3, "-------bw-");
+        int threw = 3;
+
+        ArrayList<Move> list = rules.getAllLegalMoves(board, threw, Game.WHITES_TURN);
+
+        assertEquals(1, list.size());
+        assertTrue(list.contains(new Move(29, 26)));
     }
 }

@@ -176,4 +176,5 @@ public class BoardTest {
         assertFalse(board.isPieceInBox(23, Board.BOX_WHITE));
         assertFalse(board.isPieceInBox(23, Board.BOX_BLACK));
     }
+
 }
