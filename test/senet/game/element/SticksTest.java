@@ -28,13 +28,33 @@ public class SticksTest {
     public void tearDown() {
     }
 
+//    @Test
+//    public void testThrowThem() {
+//        Sticks sticks = new Sticks();
+//        int result;
+//        for(int i = 0; i < 50; i++) {
+//            result = sticks.getResultOfThrow();
+//            assertTrue(result >= 1 && result <= 5);
+//        }
+//    }
+
     @Test
-    public void testThrowThem() {
+    public void testComputeTotal() {
         Sticks sticks = new Sticks();
-        int result;
+        Integer[] detail;
         for(int i = 0; i < 50; i++) {
-            result = sticks.getResultOfThrow();
-            assertTrue(result >= 1 && result <= 5);
+            detail = sticks.getSticks();
+            int total = Sticks.computeTotal(detail);
+            assertTrue(total >= 1 && total <= 5);
+        }
+    }
+
+    @Test
+    public void testGetSticks() {
+        Sticks sticks = new Sticks();
+        Integer[] result = sticks.getSticks();
+        for(Integer e : result) {
+            assertTrue(e == 0 || e == 1);
         }
     }
 

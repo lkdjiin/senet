@@ -5,7 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import javax.swing.JOptionPane;
-import senet.game.element.Board;
+import senet.game.element.*;
 import senet.utils.ColorUtils;
 
 /**
@@ -19,6 +19,7 @@ public class UI extends javax.swing.JFrame {
 
     private Controller controller;
     private GameBoard2D gb2d;
+    private SticksPanel sticksPanel;
 
     /**
      * Sole constructor.
@@ -29,6 +30,8 @@ public class UI extends javax.swing.JFrame {
         labelSticksResult.setText(" ");
         
         try {
+            sticksPanel = new SticksPanel();
+
             gb2d = new GameBoard2D();
             gb2d.setBoard(new File("images/board.jpg"), new File("images/board-cache.png"));
 
@@ -73,6 +76,7 @@ public class UI extends javax.swing.JFrame {
         }
         panelBoard.add(gb2d);
         gb2d.drawBoard();
+        panelSticks.add(sticksPanel);
     }
 
     /**
@@ -110,6 +114,7 @@ public class UI extends javax.swing.JFrame {
         btThrowSticks = new javax.swing.JButton();
         labelTurn = new javax.swing.JLabel();
         btMoveOut = new javax.swing.JButton();
+        panelSticks = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         menuFileNewGameTwoPlayers = new javax.swing.JMenuItem();
@@ -138,7 +143,7 @@ public class UI extends javax.swing.JFrame {
             .addGap(0, 237, Short.MAX_VALUE)
         );
 
-        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18)); // NOI18N
+        labelSticksResult.setFont(new java.awt.Font("DejaVu Sans", 1, 18));
         labelSticksResult.setText("jLabel1");
 
         btThrowSticks.setText("Throw sticks");
@@ -160,6 +165,21 @@ public class UI extends javax.swing.JFrame {
             }
         });
 
+        panelSticks.setBackground(new java.awt.Color(201, 193, 146));
+        panelSticks.setBorder(null);
+        panelSticks.setPreferredSize(new java.awt.Dimension(145, 150));
+
+        javax.swing.GroupLayout panelSticksLayout = new javax.swing.GroupLayout(panelSticks);
+        panelSticks.setLayout(panelSticksLayout);
+        panelSticksLayout.setHorizontalGroup(
+            panelSticksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 145, Short.MAX_VALUE)
+        );
+        panelSticksLayout.setVerticalGroup(
+            panelSticksLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 150, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout panelContainerLayout = new javax.swing.GroupLayout(panelContainer);
         panelContainer.setLayout(panelContainerLayout);
         panelContainerLayout.setHorizontalGroup(
@@ -171,6 +191,8 @@ public class UI extends javax.swing.JFrame {
                     .addGroup(panelContainerLayout.createSequentialGroup()
                         .addComponent(labelTurn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(panelSticks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(labelSticksResult)
                             .addGroup(panelContainerLayout.createSequentialGroup()
@@ -185,13 +207,16 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelTurn)
-                    .addComponent(btMoveOut)
-                    .addComponent(btThrowSticks))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelSticksResult)
-                .addContainerGap(145, Short.MAX_VALUE))
+                .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelContainerLayout.createSequentialGroup()
+                        .addGroup(panelContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(labelTurn)
+                            .addComponent(btMoveOut)
+                            .addComponent(btThrowSticks))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelSticksResult))
+                    .addComponent(panelSticks, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jMenu1.setText("File");
@@ -262,8 +287,9 @@ public class UI extends javax.swing.JFrame {
      * Show the result of threw to the player(s).
      * @param result the number to show
      */
-    public void displaySticksResult(int result) {
-        labelSticksResult.setText("" + result);
+    public void displaySticksResult(Integer[] detail, int total) {
+        labelSticksResult.setText("" + total);
+        sticksPanel.draw(detail);
     }
 
     /**
@@ -317,6 +343,7 @@ public class UI extends javax.swing.JFrame {
         btThrowSticks.setEnabled(value);
         if(value) {
             labelSticksResult.setText(" ");
+            sticksPanel.clear();
         }
     }
 
@@ -339,6 +366,7 @@ public class UI extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuFileNewGameTwoPlayers;
     private javax.swing.JPanel panelBoard;
     private javax.swing.JPanel panelContainer;
+    private javax.swing.JPanel panelSticks;
     // End of variables declaration//GEN-END:variables
 
 }

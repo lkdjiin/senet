@@ -34,8 +34,9 @@ public class Controller {
      * A player (through GUI or AI) want to throw the sticks.
      */
     public void throwTheSticks() {
-        threw = sticks.getResultOfThrow();
-        ui.displaySticksResult(threw);
+        Integer[] detail = sticks.getSticks();
+        threw = Sticks.computeTotal(detail);
+        ui.displaySticksResult(detail, threw);
         game.setSticksThrowed(true);
         ui.enableThrowing(false);
     }
