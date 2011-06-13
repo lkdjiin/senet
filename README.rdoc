@@ -8,7 +8,7 @@ Senet is in early development stage. Two human players can play against each oth
 
 == Documentation
 
-See the {RULES.rdoc}[https://github.com/lkdjiin/senet/blob/master/RULES.rdoc] file to know wich set of rules are used.
+Click menu Help>Rules to know wich set of rules are used.
 
 To start a new game : menu File>New game
 

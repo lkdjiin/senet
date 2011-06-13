@@ -1,0 +1,117 @@
+
+<html>
+  <head><title>RULES.markdown</title></head>
+  <body>
+<h1>Basic Rules Of Senet</h1>
+
+<h2>The Goal</h2>
+
+<p>Remove all your pieces off the board.</p>
+
+<h2>Game Elements</h2>
+
+<h3>Throwing Sticks</h3>
+
+<p>There are 4 sticks. One face is white, the other face is black.</p>
+
+<p><img src="images/white-stick.png" alt="White Stick" />
+<img src="images/black-stick.png" alt="Black Stick" /></p>
+
+<p>This is how you compute the result:</p>
+
+<ul>
+<li>1 white face:  1</li>
+<li>2 white faces: 2</li>
+<li>3 white faces: 3</li>
+<li>4 white faces: 4</li>
+<li>0 white face:  5</li>
+</ul>
+
+
+<h3>Pieces</h3>
+
+<ul>
+<li>5 blacks</li>
+<li>5 whites</li>
+</ul>
+
+
+<h3>The Board</h3>
+
+<p>The board is divided into thirty squares (called house), in three rows of ten.</p>
+
+<pre><code>1  2  3  4  5  6  7  8  9  10
+20 19 18 17 16 15 14 13 12 11
+21 22 23 24 25 26 27 28 29 30
+</code></pre>
+
+<ul>
+<li>15: the house of second life</li>
+<li>26: the good house</li>
+<li>27: the house of water</li>
+<li>28: the house of the three judges</li>
+<li>29: the house of the two judges</li>
+<li>30: the house of Horus</li>
+</ul>
+
+
+<h2>Board Set Up</h2>
+
+<pre><code>W  B  W  B  W  B  W  B  W  B
+20 19 18 17 16 15 14 13 12 11
+21 22 23 24 25 26 27 28 29 30
+</code></pre>
+
+<p>Legend: B is for black, W is for white.</p>
+
+<h2>Who Plays First</h2>
+
+<p>The player (randomly choosen) with
+the black pieces plays first.</p>
+
+<h2>Throwing The Sticks</h2>
+
+<ul>
+<li>1: make your move and then play again</li>
+<li>2: make your move</li>
+<li>3: make your move</li>
+<li>4: make your move and then play again</li>
+<li>5: make your move and then play again</li>
+</ul>
+
+
+<h2>Moves</h2>
+
+<p>There can be, at any one time, only one piece on any one house.</p>
+
+<p>A piece advances as many houses as the player threw.</p>
+
+<p>The player must move a piece forward if he can. If there is no legal forward move possible, then he must
+move a piece backward. If there is no legal backward move possible, the throw is forfeited.</p>
+
+<p>When moving to an enemy square, you swap places with this undefended enemy piece (with two pieces
+of the same color on consecutive squares being considered to be protecting each other,
+with neither being able to be knocked off).</p>
+
+<p>Three enemy pieces on consecutive squares may not be passed by the opponent.</p>
+
+<p>The Hazardous Squares (26 - 30):</p>
+
+<ul>
+<li>26:  You may not move beyond this square until you have landed there by an exact throw,
+     or you may exit directly if you throw a score of 5.</li>
+<li>27:  This is the most treacherous square where any piece that lands here must go back
+     to the 15th square.</li>
+<li>28:  Must throw a 3 to exit.</li>
+<li>29:  Must throw a 2 to exit.</li>
+<li>30:  Must throw a 1 to exit.</li>
+</ul>
+
+
+<p>On square 26 a piece is protected, even if it is alone.</p>
+
+<p>On squares 28, 29 and 30 yours pieces are never protected. If
+you move backward from one of those square (if it is your only legal move
+or your opponent swap you) you fall in water and return to the 15th square.</p>
+  </body>
+</html>

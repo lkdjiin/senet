@@ -4,6 +4,8 @@ import gameboard2d.GameBoard2D;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import senet.dialog.DialogAbout;
 import senet.game.element.*;
@@ -251,6 +253,11 @@ public class UI extends javax.swing.JFrame {
         menuHelp.setText("Help");
 
         menuHelpRules.setText("Rules");
+        menuHelpRules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHelpRulesActionPerformed(evt);
+            }
+        });
         menuHelp.add(menuHelpRules);
         menuHelp.add(jSeparator2);
 
@@ -320,6 +327,14 @@ public class UI extends javax.swing.JFrame {
     private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
         DialogAbout dialogAbout = new DialogAbout(this, true);
     }//GEN-LAST:event_menuHelpAboutActionPerformed
+
+    private void menuHelpRulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpRulesActionPerformed
+        try {
+            Desktop.getDesktop().open(new File("documentation/RULES.html"));
+        } catch (IOException ex) {
+            Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_menuHelpRulesActionPerformed
 
     /**
      * Show the result of threw to the player(s).
