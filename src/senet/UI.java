@@ -77,6 +77,7 @@ public class UI extends javax.swing.JFrame {
         panelBoard.add(gb2d);
         gb2d.drawBoard();
         panelSticks.add(sticksPanel);
+        sticksPanel.clear();
     }
 
     /**
@@ -116,9 +117,14 @@ public class UI extends javax.swing.JFrame {
         btMoveOut = new javax.swing.JButton();
         panelSticks = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
+        menuFile = new javax.swing.JMenu();
         menuFileNewGameTwoPlayers = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        menuFileQuit = new javax.swing.JMenuItem();
+        menuHelp = new javax.swing.JMenu();
+        menuHelpRules = new javax.swing.JMenuItem();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
+        menuHelpAbout = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -219,7 +225,7 @@ public class UI extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu1.setText("File");
+        menuFile.setText("File");
 
         menuFileNewGameTwoPlayers.setText("New Game Two Players...");
         menuFileNewGameTwoPlayers.addActionListener(new java.awt.event.ActionListener() {
@@ -227,12 +233,29 @@ public class UI extends javax.swing.JFrame {
                 menuFileNewGameTwoPlayersActionPerformed(evt);
             }
         });
-        jMenu1.add(menuFileNewGameTwoPlayers);
+        menuFile.add(menuFileNewGameTwoPlayers);
+        menuFile.add(jSeparator1);
 
-        jMenuBar1.add(jMenu1);
+        menuFileQuit.setText("Quit Game");
+        menuFileQuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFileQuitActionPerformed(evt);
+            }
+        });
+        menuFile.add(menuFileQuit);
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(menuFile);
+
+        menuHelp.setText("Help");
+
+        menuHelpRules.setText("Rules");
+        menuHelp.add(menuHelpRules);
+        menuHelp.add(jSeparator2);
+
+        menuHelpAbout.setText("About");
+        menuHelp.add(menuHelpAbout);
+
+        jMenuBar1.add(menuHelp);
 
         setJMenuBar(jMenuBar1);
 
@@ -282,6 +305,10 @@ public class UI extends javax.swing.JFrame {
     private void btMoveOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btMoveOutActionPerformed
         controller.buttonMoveOutClicked();
     }//GEN-LAST:event_btMoveOutActionPerformed
+
+    private void menuFileQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileQuitActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_menuFileQuitActionPerformed
 
     /**
      * Show the result of threw to the player(s).
@@ -358,12 +385,17 @@ public class UI extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btMoveOut;
     private javax.swing.JButton btThrowSticks;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JLabel labelSticksResult;
     private javax.swing.JLabel labelTurn;
+    private javax.swing.JMenu menuFile;
     private javax.swing.JMenuItem menuFileNewGameTwoPlayers;
+    private javax.swing.JMenuItem menuFileQuit;
+    private javax.swing.JMenu menuHelp;
+    private javax.swing.JMenuItem menuHelpAbout;
+    private javax.swing.JMenuItem menuHelpRules;
     private javax.swing.JPanel panelBoard;
     private javax.swing.JPanel panelContainer;
     private javax.swing.JPanel panelSticks;
