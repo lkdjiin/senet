@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.io.*;
 import javax.swing.JOptionPane;
+import senet.dialog.DialogAbout;
 import senet.game.element.*;
 import senet.utils.ColorUtils;
 
@@ -78,6 +79,7 @@ public class UI extends javax.swing.JFrame {
         gb2d.drawBoard();
         panelSticks.add(sticksPanel);
         sticksPanel.clear();
+        setTitle("Senet " + ApplicationVersion.VERSION);
     }
 
     /**
@@ -253,6 +255,11 @@ public class UI extends javax.swing.JFrame {
         menuHelp.add(jSeparator2);
 
         menuHelpAbout.setText("About");
+        menuHelpAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHelpAboutActionPerformed(evt);
+            }
+        });
         menuHelp.add(menuHelpAbout);
 
         jMenuBar1.add(menuHelp);
@@ -309,6 +316,10 @@ public class UI extends javax.swing.JFrame {
     private void menuFileQuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFileQuitActionPerformed
         System.exit(0);
     }//GEN-LAST:event_menuFileQuitActionPerformed
+
+    private void menuHelpAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpAboutActionPerformed
+        DialogAbout dialogAbout = new DialogAbout(this, true);
+    }//GEN-LAST:event_menuHelpAboutActionPerformed
 
     /**
      * Show the result of threw to the player(s).
