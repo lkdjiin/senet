@@ -330,7 +330,7 @@ public class UI extends javax.swing.JFrame {
 
     private void menuHelpRulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelpRulesActionPerformed
         try {
-            Desktop.getDesktop().open(new File("documentation/RULES.html"));
+            Desktop.getDesktop().open(new File("documentation/rules.html"));
         } catch (IOException ex) {
             Logger.getLogger(UI.class.getName()).log(Level.SEVERE, null, ex);
         }
