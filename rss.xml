@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/"
+  xmlns:dc="http://purl.org/dc/elements/1.1/"
+  xmlns:trackback="http://madskills.com/public/xml/rss/module/trackback/"
+  xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd">
+  <channel>
+    <title>Senet RSS feed</title>
+    <link>http://lkdjiin.github.com/senet</link>
+    <description>Senet is a board game from ancient Egypt</description>
+    <item>
+      <title>Senet version 0.2 is released &lt;small&gt;2011-10-08&lt;/small&gt;</title>
+      <link>http://lkdjiin.github.com/senet</link>
+      <pubDate>Sat, 08 Oct 2011 00:00:00 +0200</pubDate>
+      <dc:date>2011-10-08T00:00:00+02:00</dc:date>
+    </item>
+  </channel>
+</rss>

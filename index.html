@@ -1,77 +1,286 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset='utf-8'>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta charset="UTF-8">
+    <title>Senet - The board game from ancient Egypt</title>
+    <link rel="stylesheet/less" type="text/css" href="styles/style.less">
+    <script src="scripts/lib/less-1.1.3.min.js" type="text/javascript"></script>
+    
+    <script type="text/javascript" src="scripts/lib/highslide/highslide-full.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="scripts/lib/highslide/highslide.css" />
+    <script type="text/javascript">
+      //<![CDATA[
+      hs.registerOverlay({
+        html: '<div class="closebutton" onclick="return hs.close(this)" title="Close"></div>',
+        position: 'top right',
+        
+        fade: 2 // fading the semi-transparent overlay looks bad in IE
+      });
+      hs.graphicsDir = 'scripts/lib/highslide/graphics/';
+      hs.wrapperClassName = 'borderless';
+      hs.align = 'center';
+      hs.dimmingOpacity = 0.75;
+    //]]>
+    </script>
 
-  <title>lkdjiin/senet @ GitHub</title>
-
-  <style type="text/css">
-    body {
-      margin-top: 1.0em;
-      background-color: #845b39;
-      font-family: Helvetica, Arial, FreeSans, san-serif;
-      color: #ffffff;
-    }
-    #container {
-      margin: 0 auto;
-      width: 700px;
-    }
-    h1 { font-size: 3.8em; color: #7ba4c6; margin-bottom: 3px; }
-    h1 .small { font-size: 0.4em; }
-    h1 a { text-decoration: none }
-    h2 { font-size: 1.5em; color: #7ba4c6; }
-    h3 { text-align: center; color: #7ba4c6; }
-    a { color: #7ba4c6; }
-    .description { font-size: 1.2em; margin-bottom: 30px; margin-top: 30px; font-style: italic;}
-    .download { float: right; }
-    pre { background: #000; color: #fff; padding: 15px;}
-    hr { border: 0; width: 80%; border-bottom: 1px solid #aaa}
-    .footer { text-align:center; padding-top:30px; font-style: italic; }
-  </style>
-</head>
-
-<body>
-  <a href="http://github.com/lkdjiin/senet"><img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub" /></a>
-
-  <div id="container">
-
-    <div class="download">
-      <a href="http://github.com/lkdjiin/senet/zipball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/zip.png"></a>
-      <a href="http://github.com/lkdjiin/senet/tarball/master">
-        <img border="0" width="90" src="http://github.com/images/modules/download/tar.png"></a>
-    </div>
-
-    <h1><a href="http://github.com/lkdjiin/senet">senet</a>
-      <span class="small">by <a href="http://github.com/lkdjiin">lkdjiin</a></span></h1>
-
-    <div class="description">
-      Senet is a board game from ancient Egypt.
-    </div>
-
-    <h2>Authors</h2>
-<p>lkdjiin (xavier.nayrac@gmail.com)<br/><br/>      </p>
-<h2>Contact</h2>
-<p>Xavier Nayrac (xavier.nayrac@gmail.com)<br/>      </p>
-
-
-    <h2>Download</h2>
-    <p>
-      You can download this project in either
-      <a href="http://github.com/lkdjiin/senet/zipball/master">zip</a> or
-      <a href="http://github.com/lkdjiin/senet/tarball/master">tar</a> formats.
-    </p>
-    <p>You can also clone the project with <a href="http://git-scm.com">Git</a>
-      by running:
-      <pre>$ git clone git://github.com/lkdjiin/senet</pre>
-    </p>
-
-    <div class="footer">
-      get the source code on GitHub : <a href="http://github.com/lkdjiin/senet">lkdjiin/senet</a>
-    </div>
-
-  </div>
-
+  </link>
+  <body>
   
-</body>
-</html>
+    <!-- Topbar
+    ================================================== -->
+    <div class="topbar">
+      <div class="topbar-inner">
+        <div class="container">
+          <a class="brand" href="index.html">Senet</a>
+          <ul id="menu">
+  <li><a href="index.html#overview">Overview</a></li>
+  <li><a href="index.html#about">About</a></li>
+  <li><a href="index.html#download">Download</a></li>
+  <li><a href="index.html#rules">Rules</a></li>
+</ul>
+
+        </div>
+      </div>
+    </div>
+    
+    
+    
+    <!-- Fork Me
+    ================================================== -->
+    <a href="https://github.com/lkdjiin/senet" target="_blank">
+      <img alt="Fork me on GitHub" src="styles/images/forkme_blue_right.png" width="149" height="149" style="border:0 none; position:absolute; top:0; right:0; z-index:20000;" />
+    </a>
+    
+    <!-- Header
+    ================================================== -->
+    <header>
+      <div class="container">
+        <hgroup>
+          <h1>Senet</h1>
+          <h2>The board game from ancient Egypt</h2>
+        </hgroup>
+      </div>
+    </header>
+    
+    <!-- Social
+    ================================================== -->
+    <div class="container">
+      <div class="row absolute">
+        <div class="span16 social">
+          <a href="rss.xml"><img src="styles/images/rss32.png" width="32" height="32" /></a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Overview
+    ================================================== -->
+<div id="overview" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span16 page-header"><h1>Overview</h1></div>
+      <section class="span-one-third"><h2>Description</h2>
+        <p>
+        Senet is a board game originated in ancient Egypt. This game is 5000 years old. The pharaohs 
+        liked to play this game. This is a racing game for two players, simple and exciting. 
+        The Senet is based on the life of gods, and the agricultural world.
+        </p>
+      </section><section class="span-one-third"><h2>Screenshots</h2>
+        <a href="public/images/senet.jpg" class="highslide" onclick="return hs.expand(this)" title="Click to enlarge">
+          <img src="public/images/senet-th.jpg" alt="" width="283" height="190" /></a>
+        <div class="highslide-caption">
+          Senet game runing in Debian/Linux.
+        </div>
+      </section><section class="span-one-third"><h2>Features</h2>
+        <ol><li><strong>Human vs Human</strong></li>
+          <li>Human vs AI (coming soon)</li>
+          <li>Customizable rules (coming soon)</li>
+          <li>Customizable graphics (coming soon)</li>
+        </ol></section></div>
+  </div>
+</div>
+
+<!-- About
+    ================================================== -->
+<div id="about" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span16 page-header"><h1>About</h1></div>
+      <section class="span-two-thirds"><h2>Senet version 0.2 is released <small>2011-10-08</small></h2>
+<p>
+This is the first public release of Senet. This is an unfinished game, it lakes a lot of
+major features. A set of basic 
+rules is implemented and two human players can play against each other. Take a look at the 
+<a href="https://github.com/lkdjiin/senet/issues">Issues page</a> on GitHub to know what's coming soon.
+</p>
+<p><a href="news.html">View all news...</a></p>
+      </section><section class="span-one-third"><h2>License</h2>
+        <p>
+        This game is distributed under the terms of the <a href="https://github.com/lkdjiin/senet/blob/master/COPYING">
+        GNU General Public licence version 3</a>.
+        </p>
+        <h3>Contact</h3>
+        <p>
+        Feel free to <a href="mailto:xavier.nayrac@gmail.com">email me</a> with any questions or comments.
+        </p>
+      </section></div>
+  </div>
+</div>
+
+<!-- Download
+    ================================================== -->
+<div id="download" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span16 page-header"><h1>Download</h1></div>
+      <section class="span8"><h2>Download stable</h2>
+        <p>
+          You always can download the lastest stable release of Senet by clicking on the following
+          button.
+        </p>
+        <p>
+          <a href="public/senet-0.2.zip" class="btn primary">Download Senet</a>
+        </p>
+        <p>
+          Current version is 0.2
+        </p>
+      </section><section class="span8"><h3>Install</h3>
+        <p>
+          As it's written in Java, Senet is a multi-platform application. You should install first the
+          latest <a href="http://www.java.com/download/">Java JRE</a>. Then decompress the Senet
+          archive you've just downloaded and type the following command line to start the game:
+        </p>
+        <pre><code>java -jar senet.jar</code></pre>
+      </section></div>
+  </div>
+</div>
+
+<!-- Rules
+    ================================================== -->
+<div id="rules" class="section">
+  <div class="container">
+    <div class="row">
+      <div class="span16 page-header"><h1>Rules</h1></div>
+      <section class="span4"><h2>How to play</h2>
+        <p>
+        Go to the folder where you installed Senet and type:
+        </p>
+        <pre><code>java -jar senet.jar</code></pre>
+      </section><section class="span12"><h3>The interface</h3>
+        <p>
+          To start a new game, click the menu File&#xA0;&gt;&#xA0;New Game Two Players... then each player, in turn,
+          throw the sticks and make a move.
+        </p>
+        <p>
+          To make a move, select a piece by left-clicking it, then left-click where you want to move it.
+          You always could deselect a previously selected piece by right-clicking it.
+        </p>
+      </section></div>
+    <div class="row">
+      <section class="span4"><h2>Basic rules</h2>
+        <p>The rules of Senet could seem somewhat complex at first look. But after 2 or 3 games
+        you will realize that Senet is a simple and easy game.</p>
+      </section><section class="span12"><h3>The Goal</h3>
+        <p>Remove all your pieces off the board.</p>
+        
+        <h3>Game Elements</h3>
+        <h4>Throwing Sticks</h4>
+
+        <p>There are 4 sticks. One face is white, the other face is black.</p>
+
+        <p><img src="public/images/white-stick.png" alt="White Stick" /><img src="public/images/black-stick.png" alt="Black Stick" /></p>
+
+        <p>This is how you compute the result:</p>
+
+        <ul><li>1 white face:  1</li>
+          <li>2 white faces: 2</li>
+          <li>3 white faces: 3</li>
+          <li>4 white faces: 4</li>
+          <li>0 white face:  5</li>
+        </ul><h4>Pieces</h4>
+
+        <ul><li>5 blacks</li>
+          <li>5 whites</li>
+        </ul><h4>The Board</h4>
+
+        <p>The board is divided into thirty squares (called house), in three rows of ten.</p>
+
+        <pre><code>
+        1  2  3  4  5  6  7  8  9  10
+        20 19 18 17 16 15 14 13 12 11
+        21 22 23 24 25 26 27 28 29 30
+        </code></pre>
+
+        <ul><li>15: the house of second life</li>
+          <li>26: the good house</li>
+          <li>27: the house of water</li>
+          <li>28: the house of the three judges</li>
+          <li>29: the house of the two judges</li>
+          <li>30: the house of Horus</li>
+        </ul><h3>Board Set Up</h3>
+
+        <pre><code>
+        W  B  W  B  W  B  W  B  W  B
+        20 19 18 17 16 15 14 13 12 11
+        21 22 23 24 25 26 27 28 29 30
+        </code></pre>
+
+        <p>Legend: B is for black, W is for white.</p>
+
+        <h3>Who Plays First</h3>
+
+        <p>The player (randomly choosen) with
+        the black pieces plays first.</p>
+
+        <h3>Throwing The Sticks</h3>
+
+        <ul><li>1: make your move and then play again</li>
+          <li>2: make your move</li>
+          <li>3: make your move</li>
+          <li>4: make your move and then play again</li>
+          <li>5: make your move and then play again</li>
+        </ul><h3>Moves</h3>
+
+        <p>There can be, at any one time, only one piece on any one house.</p>
+
+        <p>A piece advances as many houses as the player threw.</p>
+
+        <p>The player must move a piece forward if he can. If there is no legal forward move possible, then he must
+        move a piece backward. If there is no legal backward move possible, the throw is forfeited.</p>
+
+        <p>When moving to an enemy square, you swap places with this undefended enemy piece (with two pieces
+        of the same color on consecutive squares being considered to be protecting each other,
+        with neither being able to be knocked off).</p>
+
+        <p>Three enemy pieces on consecutive squares may not be passed by the opponent.</p>
+
+        <p>The Hazardous Squares (26 - 30):</p>
+
+        <ul><li>26:  You may not move beyond this square until you have landed there by an exact throw,
+               or you may exit directly if you throw a score of 5.</li>
+          <li>27:  This is the most treacherous square where any piece that lands here must go back
+               to the 15th square.</li>
+          <li>28:  Must throw a 3 to exit.</li>
+          <li>29:  Must throw a 2 to exit.</li>
+          <li>30:  Must throw a 1 to exit.</li>
+        </ul><p>On square 26 a piece is protected, even if it is alone.</p>
+
+        <p>On squares 28, 29 and 30 yours pieces are never protected. If
+        you move backward from one of those square (if it is your only legal move
+        or your opponent swap you) you fall in water and return to the 15th square.</p>
+      </section></div>
+  </div>
+</div>
+    
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="span16">
+            <p>2011 <a href="http://undeveloppeur.wordpress.com">Xavier Nayrac</a></p>
+            <p>Powered by <a href="http://lkdjiin.github.com/genit/">Genit</a></p>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</meta>
+</head></html>
